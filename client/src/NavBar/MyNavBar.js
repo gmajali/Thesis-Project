@@ -12,6 +12,13 @@ import {
   DropdownMenu,
   DropdownItem } from 'reactstrap';
 
+  import './MyNavBar.css'
+
+var styles = {
+  backgroundColor: '#770AFA',
+}
+
+
 export default class MyNavBar extends React.Component {
   constructor(props) {
     super(props);
@@ -28,20 +35,20 @@ export default class MyNavBar extends React.Component {
   }
   render() {
     return (
-      <div>
-        <Navbar color="light" light expand="md">
-          <NavbarBrand href="/">reactstrap</NavbarBrand>
+      <div >
+        <Navbar style={styles} expand="md">
+          <NavbarBrand className="navbarcss" href="/">reactstrap</NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
               <NavItem>
-                <NavLink href="/components/">Components</NavLink>
+                <NavLink className="navbarcss" href="/components/">Components</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href="https://github.com/reactstrap/reactstrap">GitHub</NavLink>
+                <NavLink className="navbarcss" href="https://github.com/reactstrap/reactstrap">GitHub</NavLink>
               </NavItem>
               <UncontrolledDropdown nav inNavbar>
-                <DropdownToggle nav caret>
+                <DropdownToggle className="navbarcss" nav caret>
                   Options
                 </DropdownToggle>
                 <DropdownMenu right>
