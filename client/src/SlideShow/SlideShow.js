@@ -103,7 +103,7 @@ export default class SlideShow extends React.Component {
    return (
      <div className="img-container">
        <img src={redone}  />
-       <button className="btn">Button</button>
+       <button className="btn">Start Fundraising</button>
      </div>
    )
  }
