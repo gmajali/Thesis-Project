@@ -12,6 +12,13 @@ import {
   DropdownMenu,
   DropdownItem } from 'reactstrap';
 
+  import './MyNavBar.css'
+
+var styles = {
+  backgroundColor: '#770AFA',
+}
+
+
 export default class MyNavBar extends React.Component {
   constructor(props) {
     super(props);
@@ -28,32 +35,31 @@ export default class MyNavBar extends React.Component {
   }
   render() {
     return (
-      <div>
-        <Navbar color="light" light expand="md">
-          <NavbarBrand href="/">reactstrap</NavbarBrand>
+      <div >
+        <Navbar style={styles} expand="md">
+          <NavbarBrand className="navbarcss" href="/">Home</NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
               <NavItem>
-                <NavLink href="/components/">Components</NavLink>
+                <NavLink className="navbarcss" href="/components/">Organizations</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href="https://github.com/reactstrap/reactstrap">GitHub</NavLink>
+                <NavLink className="navbarcss" href="/">Log In</NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink className="navbarcss" href="/">Sign Up</NavLink>
               </NavItem>
               <UncontrolledDropdown nav inNavbar>
-                <DropdownToggle nav caret>
-                  Options
+                <DropdownToggle className="navbarcss" nav caret>
+                  Menu
                 </DropdownToggle>
                 <DropdownMenu right>
                   <DropdownItem>
-                    Option 1
+                    Donate
                   </DropdownItem>
                   <DropdownItem>
-                    Option 2
-                  </DropdownItem>
-                  <DropdownItem divider />
-                  <DropdownItem>
-                    Reset
+                   Charities For Organizations
                   </DropdownItem>
                 </DropdownMenu>
               </UncontrolledDropdown>
