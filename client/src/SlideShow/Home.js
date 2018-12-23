@@ -1,3 +1,19 @@
+import React from 'react';
+import './Home.css';
+import redone from './redone.jpg'
+
+class Home extends React.Component {
+
+  render() {
+    return (
+      <div className="img-container">
+        <img src={redone} alt='not loading' />
+        {/* <button className="btn">Start Fundraising</button> */}
+      </div>
+    )
+  }
+}
+export default Home;
 // import React, { Component } from 'react';
 // import {
 //   Carousel,
@@ -67,7 +83,7 @@
 //         <img src={item.src} alt={item.altText} />
 //           <CarouselCaption captionHeader={item.caption} />
 //         </div>
-          
+
 //         </CarouselItem>
 //       );
 //     });
@@ -80,7 +96,7 @@
 //       >
 //         <CarouselIndicators items={items} activeIndex={activeIndex} onClickHandler={this.goToIndex} />
 //         {slides}
-        
+
 //       </Carousel>
 //     );
 //   }
@@ -88,23 +104,3 @@
 
 
 // export default SlideShow;
-
-import React from 'react';
-import './SlideShow.css';
-import redone from './redone.jpg'
-
-export default class SlideShow extends React.Component {
- constructor(props) {
-   super(props);
-   this.state = {};
- }
-
- render() {
-   return (
-     <div className="img-container">
-       <img src={redone}  />
-       <button className="btn">Start Fundraising</button>
-     </div>
-   )
- }
-}
