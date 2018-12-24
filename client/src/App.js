@@ -3,7 +3,7 @@ import MyNavBar from './NavBar/MyNavBar';
 import './App.css';
 import Home from './SlideShow/Home';
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import Contact from './components/Contact'
+import Signup from './components/Signup'
 import Organization from './components/organizations'
 
 class App extends Component {
@@ -15,7 +15,7 @@ class App extends Component {
           <Switch>
             <Route exact path='/' component={Home} />
             <Route path='/organizations' component={Organization} />
-            <Route path='/contact' component={Contact} />
+            <Route path='/Signup' component={Signup} />
           </Switch>
         </div>
       </BrowserRouter>
