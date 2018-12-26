@@ -1,0 +1,156 @@
+.pagination {
+    display: inline-block;
+    margin-top: 50px;
+    margin-left: 700px;
+  }
+  
+  .pagination a {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color .3s;
+    border: 1px solid #ddd;
+  }
+  
+  .pagination a:hover {background-color: #b43932;}
+  
+  
+  .active { 
+      background-color: #b43932;
+  }
+  
+  
+  
+  .container {
+    padding: 30px;
+    margin-top: 50px;
+  }
+  .container h4 {
+    margin-bottom: 25px;
+    margin-top: 5px;
+  }
+  
+  
+  
+  .userimg {
+    padding: 5px;
+    width: 33.33%;
+    border-radius: 8px;
+  }
+  /*////// not positioning correctly*/
+  .imgdiv{
+    display:inline-block;
+      width: auto;
+      height: auto;
+      border:1px solid red;
+      margin-right:10px;
+      float:left;
+  }
+  
+  
+  .usercard {
+      float:left;
+      margin-right:5px;
+  }
+
+/* //// */
+.profile {
+	margin-top: -100px;
+	height: 550px;
+	width: 100%;
+}
+
+.profile1 {
+
+	margin-top: -200px;
+	height: 600px;
+	width: 107% !important;
+	margin-left: -120px;
+}
+
+.profileBox {
+	margin-top: -400px;
+	width: 1000px;
+	margin-left: 450px;
+}
+
+.userImage {
+	padding: 70px;
+	width: 400px;
+	height: 500px; 
+}
+
+.usercard{
+	margin-top: -450px;
+	margin-left: 380px;
+}
+
+.im {
+	font-family: Roboto, sans-serif;
+	margin-right: 15px;
+}
+
+.myName{
+	letter-spacing: 1px;
+}
+
+#info {
+	margin-left: 190px;
+	text-align: justify;
+	margin-top: -20px;
+}
+
+.edit {
+	outline: none;
+	border-radius: 10px;
+	width: 60px;
+	color: white;
+	background-color: #b43932;
+}
+
+.edit:hover {
+	outline: none;
+	background-color: white;
+	border: 1px solid #b43932;
+	color: #b43932;
+}
+
+.edit1 {
+	outline: none;
+	border-radius: 10px;
+	width: 60px;
+	color: white;
+	background-color: #006789;
+}
+
+.edit1:hover {
+	outline: none;
+	background-color: white;
+	border: 1px solid #006789;
+	color: #006789;
+}
+
+.mediaBar {
+	background-color: #b43932;
+	width: 999px;
+	height: 80px;
+}
+
+.iconTo {
+	color: white;
+	margin-left: 50px;
+}
+
+.iconTo:hover {
+	color: yellow;
+}
+
+#bt:hover {
+	color: red;
+}
+
+.upper{
+	margin-top: -100px;
+}
