@@ -3,9 +3,6 @@ import { Card, CardImg, CardText, CardBody, CardLink,
   CardTitle, CardSubtitle, Row, Col, Container} from 'reactstrap';
 import PropTypes from 'prop-types';
 import './style.css';
-// import "../style/Home.css";
-// import hello from "../style/hello.png";
-// import line from "../style/line.png";
 
 var exampleUser = {
 	id: 3,
@@ -28,9 +25,9 @@ class UserInfo extends React.Component{
     console.log(this.props)
       return (
               <Card style={{height: "550px"}}>
-                <div className="imgdiv1" >
+                <div className="imgdiv" >
                   <img className="userImage"  src={exampleUser.imgUrl} alt="User Image" />
-                    </div>
+                </div>
                   <Col className="usercard">
                       <CardBody>
                       <div>
