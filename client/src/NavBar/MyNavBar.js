@@ -1,72 +1,21 @@
-import React from 'react';
-import {
-  Collapse,
-  Navbar,
-  NavbarToggler,
-  NavbarBrand,
-  Nav,
-  NavItem,
-  NavLink,
-  UncontrolledDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem } from 'reactstrap';
+import React, { Component } from 'react'
+// import './MyNavBar.css'
+import { Link } from "react-router-dom";
 
-  import './MyNavBar.css'
-
-var styles = {
-  backgroundColor: '#770AFA',
-}
-
-
-export default class MyNavBar extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.toggle = this.toggle.bind(this);
-    this.state = {
-      isOpen: false
-    };
-  }
-  toggle() {
-    this.setState({
-      isOpen: !this.state.isOpen
-    });
-  }
+class MyNavBar extends Component {
   render() {
     return (
-      <div >
-        <Navbar style={styles} expand="md">
-          <NavbarBrand className="navbarcss" href="/">Home</NavbarBrand>
-          <NavbarToggler onClick={this.toggle} />
-          <Collapse isOpen={this.state.isOpen} navbar>
-            <Nav className="ml-auto" navbar>
-              <NavItem>
-                <NavLink className="navbarcss" href="/components/">Organizations</NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink className="navbarcss" href="/">Log In</NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink className="navbarcss" href="/">Sign Up</NavLink>
-              </NavItem>
-              <UncontrolledDropdown nav inNavbar>
-                <DropdownToggle className="navbarcss" nav caret>
-                  Menu
-                </DropdownToggle>
-                <DropdownMenu right>
-                  <DropdownItem>
-                    Donate
-                  </DropdownItem>
-                  <DropdownItem>
-                   Charities For Organizations
-                  </DropdownItem>
-                </DropdownMenu>
-              </UncontrolledDropdown>
-            </Nav>
-          </Collapse>
-        </Navbar>
+      <div className="navbar-fixed">
+        <nav className="nav-wrapper purple darken-4 col s1">
+          <Link to='/' className=" brand-logo " style={{ textDecoration: 'none', color: "white" }}>Core I4</Link>
+          <ul className=" right"  >
+            <li><Link to="/" style={{ textDecoration: 'none', color: "white" }}>Home</Link></li>
+            <li><Link to="/Organizations" style={{ textDecoration: 'none', color: "white" }}>Organizations</Link></li>
+            <li><Link to="/Signup" style={{ textDecoration: 'none', color: "white" }}>Sign Up</Link></li>
+          </ul>
+        </nav>
       </div>
-    );
+    )
   }
 }
+export default MyNavBar;
