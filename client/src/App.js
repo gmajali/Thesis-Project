@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import MyNavBar from './NavBar/MyNavBar';
 import './App.css';
+import SlideShow from './SlideShow/SlideShow';
+// import Form from './js/components/form'
+// import List from './js/components/list'
+
 import Home from './SlideShow/Home';
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Signup from './components/Signup'
