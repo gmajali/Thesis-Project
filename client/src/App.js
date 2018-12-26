@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import MyNavBar from './NavBar/MyNavBar';
 import './App.css';
-import SlideShow from './SlideShow/SlideShow';
+// import SlideShow from './SlideShow/SlideShow';
 // import Form from './js/components/form'
 // import List from './js/components/list'
 
