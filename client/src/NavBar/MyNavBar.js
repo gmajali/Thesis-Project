@@ -12,6 +12,7 @@ class MyNavBar extends Component {
             <li><Link to="/" style={{ textDecoration: 'none', color: "white" }}>Home</Link></li>
             <li><Link to="/Organizations" style={{ textDecoration: 'none', color: "white" }}>Organizations</Link></li>
             <li><Link to="/Signup" style={{ textDecoration: 'none', color: "white" }}>Sign Up</Link></li>
+            <li><Link to="/Signin" style={{ textDecoration: 'none', color: "white" }}>Sign In</Link></li>
           </ul>
         </nav>
       </div>

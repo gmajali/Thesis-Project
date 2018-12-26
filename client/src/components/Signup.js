@@ -1,12 +1,21 @@
 import React, { Component } from 'react'
 
 class Signup extends Component {
+  state = {
+    email: '',
+    password: '',
+    firstName: '',
+    lastName: ''
+  }
+  handleChange = (e) => {
+    this.setState({
+      [e.target.id]: e.target.value
+    })
+  }
   handleSubmit = (e) => {
     e.preventDefault();
-    console.log(e.target)
-    //TODO..
+    console.log(this.state)
   }
-
   render() {
     return (
       <div className="container">
@@ -15,33 +24,35 @@ class Signup extends Component {
           <form className="col s12" onSubmit={this.handleSubmit}>
             <div className="row">
               <div className="input-field col s6">
-                <input placeholder="First Name" id="first_name" type="text" className="validate" />
-                <label className="active" htmlFor="first_name">First Name</label>
+                <input id="first_name" type="text" className="validate" onChange={this.handleChange} />
+                <label htmlFor="first_name">First Name</label>
               </div>
               <div className="input-field col s6">
-                <input placeholder="Last Name" id="last_name" type="text" className="validate" />
-                <label className="active" htmlFor="last_name">Last Name</label>
+                <input id="last_name" type="text" className="validate" onChange={this.handleChange} />
+                <label htmlFor="last_name">Last Name</label>
               </div>
             </div>
             <div className="row">
               <div className="input-field col s12">
-                <input placeholder="Email" id="email" type="email" className="validate" />
-                <label className="active" htmlFor="email">Email</label>
+                <input id="email" type="email" className="validate" onChange={this.handleChange} />
+                <label htmlFor="email">Email</label>
               </div>
             </div>
             <div className="row">
               <div className="input-field col s12">
-                <input placeholder="Phone Number" type="text" className="validate" />
-                <label className="active" htmlFor="phone_number">Phone Number</label>
+                <input type="text" className="validate" onChange={this.handleChange} />
+                <label htmlFor="phone_number">Phone Number</label>
               </div>
             </div>
             <div className="row">
               <div className="input-field col s12">
-                <input placeholder="Password" id="password" type="password" className="validate" />
-                <label className="active" htmlFor="password">Password</label>
+                <input id="password" type="password" className="validate" onChange={this.handleChange} />
+                <label htmlFor="password">Password</label>
               </div>
             </div>
-            <button className=" btn grey" >Sign Up</button>
+            <div className="input-field">
+              <button className="btn purple lighten-1 z-depth-0" >Sign Up</button>
+            </div>
           </form >
         </div>
       </div>
