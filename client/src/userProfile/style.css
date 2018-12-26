@@ -1,5 +1,6 @@
 .pagination {
     display: inline-block;
+    text-align: center;
     margin-top: 50px;
     margin-left: 700px;
   }
@@ -20,31 +21,16 @@
   .active { 
       background-color: #b43932;
   }
-  
-  
-  
-  .container {
-    padding: 30px;
-    margin-top: 50px;
-  }
-  .container h4 {
-    margin-bottom: 25px;
-    margin-top: 5px;
-  }
-  
-  
-  
   .userimg {
     padding: 5px;
     width: 33.33%;
     border-radius: 8px;
   }
-  /*////// not positioning correctly*/
+
   .imgdiv{
     display:inline-block;
       width: auto;
       height: auto;
-      border:1px solid red;
       margin-right:10px;
       float:left;
   }
@@ -62,13 +48,6 @@
 	width: 100%;
 }
 
-.profile1 {
-
-	margin-top: -200px;
-	height: 600px;
-	width: 107% !important;
-	margin-left: -120px;
-}
 
 .profileBox {
 	margin-top: -400px;
@@ -85,15 +64,6 @@
 .usercard{
 	margin-top: -450px;
 	margin-left: 380px;
-}
-
-.im {
-	font-family: Roboto, sans-serif;
-	margin-right: 15px;
-}
-
-.myName{
-	letter-spacing: 1px;
 }
 
 #info {
@@ -117,40 +87,6 @@
 	color: #b43932;
 }
 
-.edit1 {
-	outline: none;
-	border-radius: 10px;
-	width: 60px;
-	color: white;
-	background-color: #006789;
-}
-
-.edit1:hover {
-	outline: none;
-	background-color: white;
-	border: 1px solid #006789;
-	color: #006789;
-}
-
-.mediaBar {
-	background-color: #b43932;
-	width: 999px;
-	height: 80px;
-}
-
-.iconTo {
-	color: white;
-	margin-left: 50px;
-}
-
-.iconTo:hover {
-	color: yellow;
-}
-
-#bt:hover {
-	color: red;
-}
-
-.upper{
-	margin-top: -100px;
+.h4pagi {
+    text-align: center;
 }

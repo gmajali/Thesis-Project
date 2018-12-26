@@ -2,15 +2,8 @@ import React from 'react';
 import FavCard from "./FavCard.jsx";
 import { Row, Col, Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink} from 'reactstrap';
 import UserInfo from "./UserInfo.jsx";
-// import Pagination from "react-js-pagination";
 import Pagination from './Pagination';
 import "bootstrap/dist/css/bootstrap.min.css";
-// import profBack from "../style/background.jpg";
-// import "../style/Home.css";
-// import woman from "../style/woman.jpeg";
-// import logo from "../style/logo.png";
-// import "../style/Home.css";
-
 import './style.css';
 
 class UserProfile extends React.Component {
@@ -38,7 +31,7 @@ class UserProfile extends React.Component {
 		return (
 			<div>
 			  <UserInfo/>      
-            <h4>Charities</h4>
+            <h4 className="h4pagi">Charities</h4>
               <Row>
               {this.state.pageOfItems.map(item =>
 				<FavCard key={item.id} item={item}/>	
