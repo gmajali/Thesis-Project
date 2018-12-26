@@ -13,12 +13,7 @@
     "react-scripts": "2.1.1",
     "reactstrap": "^6.5.0",
     "redux": "^4.0.1",
-<<<<<<< HEAD
-    "redux-thunk": "^2.3.0",
-    "react-router-dom": "^4.3.1"
-=======
     "redux-thunk": "^2.3.0"
->>>>>>> a3d8d5fbb485e88b1bbddf6924ca85324e98ebc2
   },
   "scripts": {
     "start": "react-scripts start",
