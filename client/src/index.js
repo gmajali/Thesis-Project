@@ -6,6 +6,8 @@ import { Provider } from "react-redux";
 import store from "./js/store/index";
 import index from "./js/index"
 //azhar//
+// import UserProfile from './userProfile/UserProfile.jsx';
+// import UserInfo from './userProfile/UserInfo.jsx';
 
 import './index.css';
 
