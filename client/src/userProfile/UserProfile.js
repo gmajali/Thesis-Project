@@ -1,7 +1,7 @@
 import React from 'react';
-import FavCard from "./FavCard.jsx";
+import FavCard from "./FavCard";
 import { Row, Col, Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink} from 'reactstrap';
-import UserInfo from "./UserInfo.jsx";
+import UserInfo from "./UserInfo";
 import Pagination from './Pagination';
 import "bootstrap/dist/css/bootstrap.min.css";
 import './style.css';
