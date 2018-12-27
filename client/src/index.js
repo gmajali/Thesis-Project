@@ -6,15 +6,9 @@ import { Provider } from "react-redux";
 import store from "./js/store/index";
 import index from "./js/index"
 //azhar//
-
 import './index.css';
-
-// import from containers instead of component
-// import App from './containers/App';
-
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import 'bootstrap/dist/css/bootstrap.min.css';
 
 ReactDOM.render(<Provider store={store}>
     <App />
