@@ -18,9 +18,9 @@
   .pagination a:hover {background-color: #b43932;}
   
   
-  .active { 
+  /* .active { 
       background-color: #b43932;
-  }
+  } */
   .userimg {
     padding: 5px;
     width: 33.33%;
