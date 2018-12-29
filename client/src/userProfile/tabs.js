@@ -1,6 +1,7 @@
 import React from 'react';
 import { TabContent, TabPane, Nav, NavItem, Row, Col } from 'reactstrap';
 import classnames from 'classnames';
+import $ from "jquery";
 
 import FavCard from "./FavCard.js";
 import './style.css';
@@ -9,7 +10,8 @@ import Pagination from './Pagination';
 export default class Tabs extends React.Component {
   constructor(props) {
     super(props);
-    var exampleItems = [...Array(14).keys()].map(i => ({ id: (i+1), name: 'Item ' + (i+1) }));
+    var exampleItems = [{name: "lol"},{name: "lol"},{name: "lol"},{name: "lol"},{name: "lol"},{name: "lol"}]
+    // // var exampleItems = [...Array(14).keys()].map(i => ({ id: (i+1), name: 'Item ' + (i+1) }));
     this.toggle = this.toggle.bind(this);
     this.state = {
       activeTab: '1',
@@ -31,6 +33,32 @@ export default class Tabs extends React.Component {
       });
     }
   }
+
+
+  componentDidMount() {
+    var data = { owner_id: 1 };
+    console.log("here");
+    $.ajax({
+      // url: '/userCharities',
+      url: "/userCharities",
+      type: "POST",
+      data: JSON.stringify(data),
+      contentType: "application/json",
+      success: function(data) {
+        console.log(data, "/charities/charities/charities/charities");
+        this.setState({
+            exampleItems: data
+        });
+        return data;
+      }.bind(this),
+      error: function(xhr, status, err) {
+        console.error(this.props.url, status, err.toString());
+      }.bind(this)
+    });
+  }
+
+
+
   render() {
     return (
       <div className="centerTab">

@@ -10,7 +10,7 @@ var exampleUser = {
         job: "Software Engineer",
     		address: "Hacker Haus, Amman, Jordan",
     		imgUrl: "https://images.homedepot-static.com/productImages/612ae505-9daf-45c3-ac16-67f97dcb251d/svn/globalrose-flower-bouquets-prime-100-red-roses-64_1000.jpg",
-        email: "radwanabdoh@yahoo.com",
+        email: "qusay@yahoo.com",
         phoneNumber: "+962 79642 6783"
     	};
 

@@ -17,11 +17,22 @@ var knex = require('knex')({
   module.exports = {
       signUp: function(req, res){
           var password = generateHashPassword(req.body.password);
-          knex('users', {name: `${req.body.firstName} ${req.body.lastName}`, 
-          email: req.body.email}).then(result => {
+          knex('users').insert({name: `${req.body.firstName} ${req.body.lastName}`, 
+          email: req.body.email, password: password, telephone: req.body.telephone}).then(result => {
               console.log(`successful insert ${result}`)
           }).catch(err => {
               console.log(`error => ${err}`);
           });
-      }
+      },
+      getUserChar: function (req, res) {
+          knex.select().table('charities').then( (err, result) => {
+            console.log('Initialized successfully');
+            if (result) {
+                // console.log('result',result)
+                res.send(result)
+              } else {
+                res.send(err)
+              }
+          });
+        }
   }
