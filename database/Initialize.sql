@@ -30,6 +30,7 @@ CREATE TABLE IF NOT EXISTS charities  (
       location VARCHAR(155) NOT NULL,
       owner_id integer,
       FOREIGN KEY (owner_id) REFERENCES users(id), 
+      image VARCHAR(355) NOT NULL DEFAULT '',
       PRIMARY KEY (id)
     );
 

@@ -23,5 +23,16 @@ var knex = require('knex')({
           }).catch(err => {
               console.log(`error => ${err}`);
           });
-      }
+      },
+      getUserChar: function (req, res) {
+          knex.select().table('charities').then( (err, result) => {
+            console.log('Initialized successfully');
+            if (result) {
+                // console.log('result',result)
+                res.send(result)
+              } else {
+                res.send(err)
+              }
+          });
+        }
   }

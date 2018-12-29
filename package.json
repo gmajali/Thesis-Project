@@ -9,14 +9,20 @@
     "heroku-postbuild": "cd client && npm install && npm install --only=dev --no-shrinkwrap && npm run build"
   },
   "dependencies": {
+    "axios": "^0.18.0",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.18.3",
+    "chart.js": "^2.6.0",
     "express": "^4.16.4",
     "jquery": "^3.3.1",
-    "knex": "^0.16.3",
+    "jsonwebtoken": "^8.4.0",
     "mysql": "^2.16.0",
-    "node-mysql-importer": "0.0.10",
     "react": "^16.6.3",
+    "react-chartjs-2": "^2.1.0",
+    "react-dom": "^16.7.0",
+    "react-file-base64": "^1.0.3",
+    "knex": "^0.16.3",
+    "node-mysql-importer": "0.0.10",
     "react-router-dom": "^4.3.1"
   },
   "devDependencies": {
