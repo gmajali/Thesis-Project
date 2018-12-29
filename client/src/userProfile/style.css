@@ -1,7 +1,5 @@
-.pagination {
-    margin-top: 50px;
-    margin-left: 450px;
-  }
+
+
   .userimg {
     padding: 5px;
     width: 33.33%;
@@ -61,4 +59,37 @@
 
 .h4pagi {
     text-align: center;
+}
+
+.pagination {
+  display: inline-block;
+  margin-top: 50px;
+  margin-left: 30%;
+}
+
+
+.pagination button {
+  color: black;
+  float: left;
+  padding: 8px 16px;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color .3s;
+  border: 1px solid #ddd;
+}
+
+.centerTab {
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+.btnTab {
+  background-color: #D6EE06;
+  color: black;
+  float: left;
+  padding: 8px 16px;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color .3s;
+  border: 1px solid #ddd;
 }

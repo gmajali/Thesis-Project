@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, CardImg, CardText, CardBody, CardLink,
+import { Card, CardBody,
   CardTitle, CardSubtitle, Row, Col, Container} from 'reactstrap';
 import PropTypes from 'prop-types';
 import './style.css';
@@ -15,12 +15,6 @@ var exampleUser = {
     	};
 
 class UserInfo extends React.Component{
-  constructor(props) {
-    super(props)
-    
-  }
-
-
   render() {
     console.log(this.props)
       return (
@@ -28,7 +22,7 @@ class UserInfo extends React.Component{
                   <Col>
                       <CardBody>
                             <div className="imgdiv" >
-                                <img className="userImage"  src={exampleUser.imgUrl} alt="User Image" />
+                                <img className="userImage"  src={exampleUser.imgUrl} alt="User" />
                             </div>
                           <CardTitle>Profile</CardTitle>
                           <CardSubtitle><span><b>Name</b><p id="info" >{exampleUser.name}</p></span></CardSubtitle>
