@@ -14,6 +14,7 @@ CREATE TABLE IF NOT EXISTS users (
         name VARCHAR(30) NOT NULL,
         email VARCHAR(100) NOT NULL,
         password VARCHAR(50) NOT NULL,
+        telephone VARCHAR(50) NOT NULL,
         created_at TIMESTAMP NOT NULL,
         imgUrl VARCHAR(355) NOT NULL DEFAULT '',
         userTypeId integer,
