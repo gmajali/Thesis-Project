@@ -1,17 +1,70 @@
-import React from 'react';
+import React, { Fragment } from 'react';
+import {Row} from 'reactstrap';
 import './Home.css';
-import redone from './redone.jpg'
+import redone from './redone.jpg';
+// import '../App.css'
+
+import HomeCharities from '../HomeCharities.js';
+// import ChartPie from '../Chart.js';
+
+
+import $ from "jquery";
+
+
 
 class Home extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      modal: false,
+      test : [],
+      
+    };
+  }
+
+  componentDidMount() {
+    // console.log("here")
+    var charAll = $.ajax({
+      url: '/charities',
+      dataType: 'json',
+      type: "GET",
+      // data: JSON.stringify({"owner_id": 2}),
+      success: function(data) {
+          console.log(data,"app in ajax ")
+          this.setState({
+            test: data
+          })
+       return data;
+      }.bind(this),
+      error: function(xhr, status, err) {
+        console.error(this.props.url, status, err.toString());
+      }.bind(this)
+    });
+    // window.location.reload()
+}
 
   render() {
     return (
+      
       <div className="img-container">
         <img src={redone} alt='not loading' />
         {/* <button className="btn">Start Fundraising</button> */}
-      </div>
+     
+      <div>
+       <Row>
+          {this.state.test.map(item => (
+            <HomeCharities key={item.id} item={item} />
+          ))}
+        </Row>
+        </div>
+
+        <div>
+        {/* <ChartPie /> */}
+        </div>
+       </div>
     )
   }
+  
 }
 export default Home;
 // import React, { Component } from 'react';

@@ -39,11 +39,13 @@ CREATE TABLE charities  (
   amount INTEGER(155) NOT NULL,
   description MEDIUMTEXT NOT NULL,
   location VARCHAR(155) NOT NULL,
+  owner_id INTEGER NOT NULL,
+  date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (id)
 );
-  `
+`
 
-  // owner_id INTEGER NOT NULL,
+  // 
 
 // Create payments table
 var payments = `
@@ -98,67 +100,67 @@ CREATE TABLE usertype (
 // Note:create the table
 dbConnection.query(users, function(err, result) {
     if (result) {
-      console.log('users table has been created');
+      // console.log('users table has been created');
     } else {
-      console.log('users table return an ERROR', err);
+      // console.log('users table return an ERROR', err);
     }
   })
 
 // Note:create the table
 dbConnection.query(charities, function(err, result) {
     if (result) {
-      console.log('charities table has been created');
+      // console.log('charities table has been created');
     } else {
-      console.log('charities table return an ERROR');
+      // console.log('charities table return an ERROR');
     }
   })
 
   // Note:create the payments
 dbConnection.query(payments, function(err, result) {
     if (result) {
-      console.log('payments table has been created');
+      // console.log('payments table has been created');
     } else {
-      console.log('payments table return an ERROR');
+      // console.log('payments table return an ERROR');
     }
   })
 
   //Note: create the address table
   dbConnection.query(address, function(err, result) {
     if (result) {
-      console.log('address table has been created');
+      // console.log('address table has been created');
     } else {
-      console.log('address table return an ERROR');
+      // console.log('address table return an ERROR');
     }
   })
 
   // Note:create the donations table
 dbConnection.query(donations, function(err, result) {
   if (result) {
-    console.log('donations table has been created');
+    // console.log('donations table has been created');
   } else {
-    console.log('donations table return an ERROR', err);
+    // console.log('donations table return an ERROR', err);
   }
 })
 
 // Note:create the usertype table
 dbConnection.query(usertype, function(err, result) {
   if (result) {
-    console.log('usertype table has been created');
+    // console.log('usertype table has been created');
   } else {
-    console.log('usertype table return an ERROR', err);
+    // console.log('usertype table return an ERROR', err);
   }
 })
 
-var test = `insert into users (name, email, password)
-  VALUES ("ghazi", "ghazi@outlook.com", "1234")`
+// var test = `insert into users (name, email, password)
+//   VALUES ("ghazi", "ghazi@outlook.com", "1234")`
 
-  dbConnection.query(test, function(err,result){
-      if (result) {
-          console.log('user has been saved');
-        } else {
-          console.log('user has NOT BEEN SAVED', err);
-        }
-    })
+//   dbConnection.query(test, function(err,result){
+//       if (result) {
+//           // console.log('user has been saved');
+//         } else {
+//           // console.log('user has NOT BEEN SAVED', err);
+//         }
+//     })
 
   //INSERT INTO table_name (column1, column2, column3,...)
 //VALUES (value1, value2, value3,...)

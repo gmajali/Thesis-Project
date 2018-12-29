@@ -9,7 +9,7 @@ var secret = "azhar";
 //   secret: "varySecret",
 //   credentialsRequired: false
 // })
-console.log(dbConnection,"dbConnectiondbConnectiondbConnectiondbConnection")
+// console.log(dbConnection,"dbConnectiondbConnectiondbConnectiondbConnection")
 
 //azhar
 
@@ -32,7 +32,7 @@ app.get('/api/hello', (req, res) => {
 });
 
 app.post('/api/world', (req, res) => {
-  console.log(req.body);
+  // console.log(req.body);
   res.send(
     `I received your POST request. This is what you sent me: ${req.body.post}`,
   );
@@ -52,25 +52,30 @@ if (process.env.NODE_ENV === 'production') {
 
 // NOTE: when user get somthing from the addPost
 app.post('/charities',function(req,res){
-  console.log(req.body,"owner_ido/*/*/*/**/*/*/*/**/*/*/**/*/*/*//*/*wner_idowner_id")
+  // console.log(req.body,"owner_ido/*/*/*/**/*/*/*/**/*/*/**/*/*/*//*/*wner_idowner_id")
     // column name inside the charities table (id	name	amount	description	location	owner_id)
 
     var id = req.body.id;
+    //image
+    var image = req.body.image;
     var description = req.body.description;
     var name = req.body.name;
     var location = req.body.location;
     var amount = req.body.amount;
-    // var owner_id = req.body.owner_id;
+    // var date = new Date();
+    // console.log(date)
+
+     var owner_id = req.body.owner_id;
 
     
-    console.log(req.body);
+    // console.log(req.body);
 
     // NOTE: Query to insert the charities information
     // id	name	amount	description	location	owner_id
   // changed from batata to charity
-    var charity = `insert into charities (name, amount, description, location)
+    var charity = `insert into charities (name, amount, description, location,image,owner_id)
     values
-    (\"${name}\",\"${amount}\",\"${description}\",\"${location}\")`
+    (\"${name}\",\"${amount}\",\"${description}\",\"${location}\",\"${image}\",\"${owner_id}\")`
 
 // ,\"${owner_id}\"
     // NOTE: insert post information to the database
@@ -118,15 +123,34 @@ app.post('/charities',function(req,res){
 
 
 //   });
+// get all charities from specific user
+app.post('/userCharities',function(req, res) {
+  // ORDER BY column1, column2, ... ASC|DESC;
+  console.log(req.body,"usrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr")
+  var owner_id = req.body.owner_id
+  // ORDER BY date DESC
+  var query = `select * from charities  WHERE owner_id = \"${owner_id}\"`
+  dbConnection.Schema.query(query, function(err, result) {
+    if (result) {
+      // console.log('result',result)
+      res.send(result)
+    } else {
+      res.send(err)
+    }
+  })
+});
 
-  // get all charities from specific user 
+
+
+  // get all charities 
  
   app.get('/charities',function(req, res) {
-
+    // ORDER BY column1, column2, ... ASC|DESC;
+    // ORDER BY date DESC
     var query = `select * from charities`
     dbConnection.Schema.query(query, function(err, result) {
       if (result) {
-        console.log('result',result)
+        // console.log('result',result)
         res.send(result)
       } else {
         res.send(err)
@@ -151,7 +175,7 @@ app.post('/charities',function(req,res){
     var query = `UPDATE charities SET name=\"${name}\", amount= \"${amount}\", location= \"${location}\", description= \"${description}\" WHERE id=\"${id}\"`
     dbConnection.Schema.query(query, function(err, result) {
       if (result) {
-        console.log('result',result)
+        // console.log('result',result)
         res.send("update charities succ")
       } else {
         res.send(err)
@@ -163,7 +187,7 @@ app.post('/charities',function(req,res){
   // Api to delete charities
   
   app.delete('/charities',function(req, res) {
-
+console.log("delete rout: ",req.body)
     var id = req.body.id;
 
     // (\"${id}\",\"${name}\",\"${amount}\",\"${description}\",\"${location}\",\"${owner_id}\")`
@@ -171,7 +195,7 @@ app.post('/charities',function(req,res){
     var query = `DELETE FROM charities WHERE id=\"${id}\"`
     dbConnection.Schema.query(query, function(err, result) {
       if (result) {
-        console.log('result',result)
+        // console.log('result',result)
         res.send("delete charities succ")
       } else {
         res.send(err)
@@ -184,66 +208,4 @@ app.post('/charities',function(req,res){
 /*user///////////////////// */
   // Api to add users
 
-app.post('/user',function(req,res){
-  console.log(req.body,"owner_ido/*/*/*/**/*/*/*/**/*/*/**/*/*/*//*/*wner_idowner_id")
-
-    //var id = req.body.id;
-    var name = req.body.name;
-    var email = req.body.email;
-    var password = req.body.password;
-  
-    console.log(req.body);
-
-    // NOTE: Query to insert the user information
-
-    var query = `insert into users (name, email, password)
-    values
-    (\"${name}\",\"${email}\",\"${password}\")`
-
-
-    // NOTE: insert post information to the database
-    dbConnection.Schema.query(query, function(err, result) {
-      if (result) {
-     
-        var token = jwt.sign({email:email}, secret, { expiresIn: '48h' });
-        //              	       console.log("toooookeeen"+token)
-        res.json({ email: email,name:name ,message: 'User Authenticate' , token : token});
-      } else {
-        res.send(err)
-      }
-    })
-
-
-  });
-/*Sign In */
-// Api to signIn
-app.post('/signIn',function(req,res){
-  console.log(req.body,"owner_ido/*/*/*/**/*/*/*/**/*/*/**/*/*/*//*/*wner_idowner_id")
-
-    //var id = req.body.id;
-    // var name = req.body.name;
-    var email = req.body.email;
-    var password = req.body.password;
-   
-
-    // NOTE: Query to get the user information
-   
-    var query = `select * from users where email =\"${email}\" & password =\"${password}\"`
-   
-
-
-    // NOTE: insert post information to the database
-    dbConnection.Schema.query(query, function(err, result) {
-      if (result) {
-     
-        var token = jwt.sign({email:email}, secret, { expiresIn: '48h' });
-        //              	       console.log("toooookeeen"+token)
-        res.json({ email: email, message: 'User Authenticate' , token : token});
-      } else {
-        res.send(err)
-      }
-    })
-
-
-  });
 app.listen(port, () => console.log(`Listening on port ${port}`));

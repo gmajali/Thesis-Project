@@ -7,7 +7,7 @@ class MyNavBar extends Component {
     return (
       <div className="navbar-fixed">
         <nav className="nav-wrapper purple darken-4 col s1">
-          <Link to='/' className=" brand-logo " style={{ textDecoration: 'none', color: "white" }}>Core I4</Link>
+          <Link to='/' className=" brand-logo " style={{ textDecoration: 'none', color: "white" }}>Charitable</Link>
           <ul className=" right"  >
             <li><Link to="/" style={{ textDecoration: 'none', color: "white" }}>Home</Link></li>
             <li><Link to="/Organizations" style={{ textDecoration: 'none', color: "white" }}>Organizations</Link></li>

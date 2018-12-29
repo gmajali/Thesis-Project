@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
 import MyNavBar from './NavBar/MyNavBar';
-import './App.css';
+// import './App.css'
+import $ from "jquery";
+
+
 // import SlideShow from './SlideShow/SlideShow';
 // import Form from './js/components/form'
 // import List from './js/components/list'
+
 
 import Home from './SlideShow/Home';
 import { BrowserRouter, Route, Switch } from "react-router-dom";
@@ -13,6 +17,16 @@ import Organization from './components/organizations'
 import UserProfile from './userProfile/UserProfile';
 
 class App extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      modal: false,
+      test : [],
+    };
+  // console.log(allEvents, " after state befor component did mount app component")
+
+  }
+  
   render() {
     return (
       <BrowserRouter>
@@ -26,6 +40,8 @@ class App extends Component {
             <Route path='/profile' component={UserProfile} />
 
           </Switch>
+         
+          {/* <HomeCharities data={this.state.test[0]}/> */}
         </div>
       </BrowserRouter>
     );

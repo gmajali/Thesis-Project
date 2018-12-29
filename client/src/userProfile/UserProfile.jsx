@@ -1,6 +1,7 @@
 import React from "react";
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 
+import FileBase64 from "react-file-base64";
 import FavCard from "./FavCard.jsx";
 import {
   Row,
@@ -18,9 +19,7 @@ import UserInfo from "./UserInfo.jsx";
 import Pagination from "./Pagination";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./style.css";
-// import chArr from '../Services/Charities';
-// import chArr from "../Services/Charities";
-// console.log("lol", chArr, "getAllChgetAllChgetAllChgetAllChgetAllChgetAllCh");
+
 
 class UserProfile extends React.Component {
   constructor(props) {
@@ -37,35 +36,42 @@ class UserProfile extends React.Component {
       exampleItems: exampleItems,
       pageOfItems: [],
       modal: false,
-      test : [],
-      value: ""
+      test: [],
+      value: "",
+      files: [],
+      isNotUpload: true,
+      image: ""
     };
     this.toggle = this.toggle.bind(this);
+    // this.isNotUpload = this.isNotUpload.bind(this);
+
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-   
+
     this.onChangePage = this.onChangePage.bind(this);
   }
 
   componentDidMount() {
-    console.log("here")
+    var data = { owner_id: 1 };
+    console.log("here");
     var charAll = $.ajax({
-      url: '/charities',
-      dataType: 'json',
-      type: "GET",
+      // url: '/userCharities',
+      url: "/userCharities",
+      type: "POST",
+      data: JSON.stringify(data),
+      contentType: "application/json",
       success: function(data) {
-          console.log(data,"/charities/charities/charities/charities")
-          this.setState({
-            test: data
-          })
-       return data;
+        console.log(data, "/charities/charities/charities/charities");
+        this.setState({
+          test: data
+        });
+        return data;
       }.bind(this),
       error: function(xhr, status, err) {
         console.error(this.props.url, status, err.toString());
       }.bind(this)
     });
   }
-  
 
   toggle() {
     this.setState({
@@ -75,12 +81,14 @@ class UserProfile extends React.Component {
 
   handleSubmit() {
     this.toggle();
-    console.log("handleSubmit")
+    console.log("handleSubmit");
     const charityObj = {
       name: this.state.name,
       amount: this.state.amount,
       description: this.state.description,
-      location: this.state.location
+      location: this.state.location,
+      owner_id: 1,
+      image: this.state.image
     };
 
     console.log("charityObj: ", charityObj);
@@ -96,19 +104,44 @@ class UserProfile extends React.Component {
         console.error("errorrrrrr", error);
       }
     });
-    window.location.reload()
+    window.location.reload();
   }
 
-
-  handleInputChange (event) {
+  handleInputChange(event) {
     const target = event.target;
     const name = target.name;
     const value = target.value;
-    this.setState({ 
+    this.setState({
       [name]: value
     });
   }
 
+  getFiles(files) {
+    this.setState({ files: files[0].base64 });
+    var baseStr = files[0].base64.substr(22);
+    console.log("files new: ", baseStr);
+
+    $.ajax({
+      url: "https://api.imgur.com/3/image",
+      type: "POST",
+      data: JSON.stringify(baseStr),
+      headers: {
+        Authorization: "Client-ID 0d9a88ca2265606"
+      },
+      contentType: "undefined",
+      success: data => {
+        console.log("image uploaded", data.data.link);
+        this.setState({
+          isNotUpload: false,
+          image: data.data.link
+        });
+      },
+      error: function(error) {
+        console.error("image not uploaded", error);
+      }
+    });
+    // window.location.reload()
+  }
 
   onChangePage(pageOfItems) {
     // update state with new page of items
@@ -120,7 +153,8 @@ class UserProfile extends React.Component {
       <div>
         <Button color="primary" onClick={this.toggle}>
           {this.props.buttonLabel}
-        Add Charity</Button>
+          Add Charity
+        </Button>
         <Modal
           isOpen={this.state.modal}
           toggle={this.toggle}
@@ -168,10 +202,11 @@ class UserProfile extends React.Component {
                   onChange={this.handleInputChange}
                 />
               </div>
+              <FileBase64 multiple={true} onDone={this.getFiles.bind(this)} />
               <div class="form-group">
                 <label for="exampleInputPassword1">Location</label>
                 <input
-                type="text"
+                  type="text"
                   name="location"
                   id="location"
                   placeholder="input location"
@@ -189,7 +224,11 @@ class UserProfile extends React.Component {
                   Check me out
                 </label> */}
               </div>
-              <Button color="primary" onClick={this.handleSubmit}>
+              <Button
+                color="primary"
+                onClick={this.handleSubmit}
+                disabled={this.state.isNotUpload}
+              >
                 Submit
               </Button>{" "}
               <Button color="secondary" onClick={this.toggle}>
