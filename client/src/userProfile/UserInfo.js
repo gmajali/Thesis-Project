@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, CardImg, CardText, CardBody, CardLink,
+import { Card, CardBody,
   CardTitle, CardSubtitle, Row, Col, Container} from 'reactstrap';
 import PropTypes from 'prop-types';
 import './style.css';
@@ -15,28 +15,20 @@ var exampleUser = {
     	};
 
 class UserInfo extends React.Component{
-  constructor(props) {
-    super(props)
-    
-  }
-
-
   render() {
     console.log(this.props)
       return (
               <Card style={{height: "550px"}}>
-                <div className="imgdiv" >
-                  <img className="userImage"  src={exampleUser.imgUrl} alt="User Image" />
-                </div>
-                  <Col className="usercard">
+                  <Col>
                       <CardBody>
-                      <div>
+                            <div className="imgdiv" >
+                                <img className="userImage"  src={exampleUser.imgUrl} alt="User" />
+                            </div>
                           <CardTitle>Profile</CardTitle>
-                          <CardSubtitle><b>Name</b><p id="info">{exampleUser.name}</p></CardSubtitle>
-                          <CardSubtitle><b>Email</b> <p  id="info">{exampleUser.email}</p ></CardSubtitle>
-                          <CardSubtitle><b>Phone Number</b><p  id="info">{exampleUser.phoneNumber}</p ></CardSubtitle>
+                          <CardSubtitle><span><b>Name</b><p id="info" >{exampleUser.name}</p></span></CardSubtitle>
+                          <CardSubtitle><span><b>Email</b> <p id="info" >{exampleUser.email}</p ></span></CardSubtitle>
+                          <CardSubtitle><span><b>Phone Number</b><p id="info" >{exampleUser.phoneNumber}</p ></span></CardSubtitle>
                           <button className="edit" href="#">Edit</button>
-                        </div>
                       </CardBody>
                   </Col>
               </Card>  
