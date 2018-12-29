@@ -29,7 +29,6 @@ if (process.env.NODE_ENV === 'production') {
 
 // Signup User
 app.post('/account/signup', (req, res, next) => {
-  dbOpt.signUp(req, res => {
     if (!req.body.name){
       return res.send({
         success: false,
@@ -55,13 +54,7 @@ app.post('/account/signup', (req, res, next) => {
       });
     }
     req.body.email = req.body.email.toLowerCase();
-
-    knex('users').insert(
-      knex
-        .select(req.body.email, req.body.name)
-        .whereNotExists(knex('users').where('email', req.body.email))
-    )
-  })
+    dbOpt.signUp(req, res);
 
 })
 
@@ -137,8 +130,6 @@ app.post('/charities',function(req,res){
 //         res.send(err)
 //       }
 //     })
-
-
 //   });
 // get all charities from specific user
 app.post('/userCharities',function(req, res) {
