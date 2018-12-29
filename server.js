@@ -1,7 +1,8 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
-const dbOpt = require('./database/Schema');
+const Schema = require('./database/Schema');
+const dbOpt = require('./database/dbOpt');
 
 const app = express();
 const port = process.env.PORT || 5000;
@@ -11,7 +12,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.post('/api/initializeDB', (req, res) => {
   console.log('testing initialize db');
-  dbOpt.initializeDB(req, res);
+  Schema.initializeDB(req, res);
 });
 
 
@@ -26,83 +27,41 @@ if (process.env.NODE_ENV === 'production') {
 
 // Signup User
 app.post('/account/signup', (req, res, next) => {
-  // console.log(req.body);
-  const { body } = req;
-  const {
-    firstName,
-    lastName,
-    password
-  } = body;
-  let {
-    email
-  } = body;
-
-  if (!firstName) {
-    return res.send({
-      success: false,
-      message: 'Error: First name cannot be blank.'
-    });
-  }
-  if (!lastName) {
-    return res.send({
-      success: false,
-      message: 'Error: Last name cannot be blank.'
-    });
-  }
-  if (!email) {
-    return res.send({
-      success: false,
-      message: 'Error: Email cannot be blank.'
-    });
-  }
-  if (!password) {
-    return res.send({
-      success: false,
-      message: 'Error: Password cannot be blank.'
-    });
-  }
-
-  email = email.toLowerCase();
-
-  // Steps:
-  // 1. Verify email doesn't exist
-  // 2. Save
-  User.find({
-    email: email,
-  }, (err, previousUsers) => {
-    if (err) {
+  dbOpt.signUp(req, res => {
+    if (!req.body.name){
       return res.send({
         success: false,
-        message: 'Error: Server error.'
-      })
-    } else if (previousUsers.length > 0) {
-      return res.send({
-        success: false,
-        message: 'Error: Account already exists.'
+        message: 'Error: must fill in name field.'
       });
     }
-
-    // Save the new user
-    const newUser = new User();
-
-    newUser.email = email;
-    newUser.firstName = firstName;
-    newUser.lastName = lastName;
-    newUser.password = newUser.generateHash(password);
-    newUser.save((err, user) => {
-      if (err) {
-        return res.send({
-          success: false,
-          message: 'Error: server error.'
-        });
-      }
+    if (!req.body.email){
       return res.send({
-        success: true,
-        message: 'Signed up'
+        success: false,
+        message: 'Error: must fill in email field.'
       });
-    });
-  });
-});
+    }
+    if (!req.body.telephone){
+      return res.send({
+        success: false,
+        message: 'Error: must fill in phone number field.'
+      });
+    }
+    if (!req.body.password){
+      return res.send({
+        success: false,
+        message: 'Error: must fill in password field.'
+      });
+    }
+    req.body.email = req.body.email.toLowerCase();
+
+    knex('users').insert(
+      knex
+        .select(req.body.email, req.body.name)
+        .whereNotExists(knex('users').where('email', req.body.email))
+    )
+  })
+
+})
 
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
