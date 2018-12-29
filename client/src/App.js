@@ -7,6 +7,7 @@ import $ from "jquery";
 // import SlideShow from './SlideShow/SlideShow';
 // import Form from './js/components/form'
 // import List from './js/components/list'
+import './App.css';
 
 
 import Home from './SlideShow/Home';
@@ -38,7 +39,6 @@ class App extends Component {
             <Route path='/Signup' component={Signup} />
             <Route path='/SignIn' component={SignIn} />
             <Route path='/profile' component={UserProfile} />
-
           </Switch>
          
           {/* <HomeCharities data={this.state.test[0]}/> */}
