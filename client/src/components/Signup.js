@@ -41,7 +41,7 @@ class Signup extends Component {
             <div className="row">
               <div className="input-field col s12">
                 <input type="text" className="validate" onChange={this.handleChange} />
-                <label htmlFor="phone_number">Phone Number</label>
+                <label htmlFor="tel">Phone Number</label>
               </div>
             </div>
             <div className="row">

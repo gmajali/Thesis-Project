@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import MyNavBar from './NavBar/MyNavBar';
 import './App.css';
-// import SlideShow from './SlideShow/SlideShow';
-// import Form from './js/components/form'
-// import List from './js/components/list'
 
 import Home from './SlideShow/Home';
 import { BrowserRouter, Route, Switch } from "react-router-dom";
@@ -24,7 +21,6 @@ class App extends Component {
             <Route path='/Signup' component={Signup} />
             <Route path='/SignIn' component={SignIn} />
             <Route path='/profile' component={UserProfile} />
-
           </Switch>
         </div>
       </BrowserRouter>
