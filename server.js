@@ -63,7 +63,7 @@ app.post('/account/signup', (req, res, next) => {
 })
 
 app.post('/account/signin', (req, res, next) => {
-  const email = req.body.email;
+  let email = req.body.email;
   const password = req.body.password;
 
   if (!email){
