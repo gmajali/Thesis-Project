@@ -8,7 +8,6 @@ const app = express();
 const port = process.env.PORT || 5000;
 
 app.use(bodyParser.json());
-app.use(bodyParser.json());
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -29,33 +28,59 @@ if (process.env.NODE_ENV === 'production') {
 
 // Signup User
 app.post('/account/signup', (req, res, next) => {
-    if (!req.body.name){
+  const name = req.body.name;
+  const email = req.body.email;
+  const telephone = req.body.telephone;
+  const password = req.body.password;
+
+    if (!name){
       return res.send({
         success: false,
         message: 'Error: must fill in name field.'
       });
     }
-    if (!req.body.email){
+    if (!email){
       return res.send({
         success: false,
         message: 'Error: must fill in email field.'
       });
     }
-    if (!req.body.telephone){
-      return res.send({
-        success: false,
-        message: 'Error: must fill in phone number field.'
-      });
-    }
-    if (!req.body.password){
+    if (!password){
       return res.send({
         success: false,
         message: 'Error: must fill in password field.'
       });
     }
-    req.body.email = req.body.email.toLowerCase();
+    if (!telephone){
+      return res.send({
+        success: false,
+        message: 'Error: must fill in phone number field.'
+      });
+    }
+    email = email.toLowerCase();
     dbOpt.signUp(req, res);
 
+})
+
+app.post('/account/signin', (req, res, next) => {
+  const email = req.body.email;
+  const password = req.body.password;
+
+  if (!email){
+    return res.send({
+      success: false,
+      message: 'Must fill in Email field'
+    });
+  }
+  if (!password){
+    return res.send({
+      success: false,
+      message: 'Must fill in Password field'
+    })
+  }
+  email = email.toLowerCase();
+
+  dbOpt.signIn(req, res);
 })
 
 //azhar
