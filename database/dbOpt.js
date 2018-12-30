@@ -1,10 +1,5 @@
 const express = require('express');
 const bcrypt = require('bcrypt-nodejs');
-const bodyParser = require('body-parser');
-const app = express();
-app.use(bodyParser.json());
-
-app.use(bodyParser.urlencoded({ extended: true }));
 
 var knex = require('knex')({
     client: 'mysql',
@@ -19,10 +14,6 @@ var knex = require('knex')({
 
   function generateHashPassword(password){
       return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
-  };
-
-  function validPassword(password, dbPassword) {
-    return bcrypt.compareSync(password, dbPassword);
   };
 
   module.exports = {

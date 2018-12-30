@@ -29,7 +29,7 @@ if (process.env.NODE_ENV === 'production') {
 // Signup User
 app.post('/account/signup', (req, res, next) => {
   const name = req.body.name;
-  const email = req.body.email;
+  let email = req.body.email;
   const telephone = req.body.telephone;
   const password = req.body.password;
 
