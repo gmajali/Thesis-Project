@@ -18,3 +18,19 @@ ReactDOM.render(<Provider store={store}>
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: http://bit.ly/CRA-PWA
 serviceWorker.unregister();
+
+signUp: function(req, res){
+  var password = generateHashPassword(req.body.password);
+  knex('users').where('email', req.body.email).then(res => {
+      if (res.length === 0) {
+          return knex('users').insert({name: req.body.name, 
+          email: req.body.email, password: password, telephone: req.body.telephone}).then(result => {
+            console.log(`successful insert ${result}`)
+        })
+      } else {
+        knex.catch(err => {
+            console.log(`error => ${err}`);
+        });
+      }
+  })
+}

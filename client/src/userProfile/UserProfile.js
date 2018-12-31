@@ -2,7 +2,7 @@ import React from "react";
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 
 import FileBase64 from "react-file-base64";
-import FavCard from "./FavCard.jsx";
+import FavCard from "./FavCard.js";
 import {
   Row,
   Col,
@@ -15,8 +15,9 @@ import {
   NavLink
 } from "reactstrap";
 import $ from "jquery";
-import UserInfo from "./UserInfo.jsx";
+import UserInfo from "./UserInfo.js";
 import Pagination from "./Pagination";
+import Tabs from './tabs.js'
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./style.css";
 
@@ -238,18 +239,7 @@ class UserProfile extends React.Component {
         </Modal>
 
         <UserInfo />
-        <h4 className="h4pagi">Charities</h4>
-        <Row>
-          {this.state.test.map(item => (
-            <FavCard key={item.id} item={item} />
-          ))}
-        </Row>
-        <div>
-          <Pagination
-            items={this.state.exampleItems}
-            onChangePage={this.onChangePage}
-          />
-        </div>
+       <Tabs />
       </div>
     );
   }
