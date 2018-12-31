@@ -28,10 +28,10 @@ if (process.env.NODE_ENV === 'production') {
 
 // Signup User
 app.post('/account/signup', (req, res, next) => {
-  const name = req.body.name;
-  const email = req.body.email;
-  const telephone = req.body.telephone;
-  const password = req.body.password;
+  let name = req.body.name;
+  let email = req.body.email;
+  let telephone = req.body.telephone;
+  let password = req.body.password;
 
     if (!name){
       return res.send({
@@ -233,4 +233,4 @@ app.post('/userCharities',function(req, res) {
 /*user///////////////////// */
   // Api to add users
 
-app.listen(port, () => console.log(`Listening on port ${port}`));
+module.exports = app.listen(port, () => console.log(`Listening on port ${port}`));
