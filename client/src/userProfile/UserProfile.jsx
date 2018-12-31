@@ -43,19 +43,15 @@ class UserProfile extends React.Component {
       image: ""
     };
     this.toggle = this.toggle.bind(this);
-    // this.isNotUpload = this.isNotUpload.bind(this);
-
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-
     this.onChangePage = this.onChangePage.bind(this);
   }
 
   componentDidMount() {
     var data = { owner_id: 1 };
-    console.log("here");
+    console.log("here owner_id: 1", data);
     var charAll = $.ajax({
-      // url: '/userCharities',
       url: "/userCharities",
       type: "POST",
       data: JSON.stringify(data),
@@ -98,7 +94,7 @@ class UserProfile extends React.Component {
       data: JSON.stringify(charityObj),
       contentType: "application/json",
       success: function(data) {
-        console.log("pleasssssss", data);
+        console.log("ad charities in Db", data);
       },
       error: function(error) {
         console.error("errorrrrrr", error);

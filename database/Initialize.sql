@@ -21,7 +21,7 @@ CREATE TABLE IF NOT EXISTS users (
         FOREIGN KEY (userTypeId) REFERENCES usertype(id), 
         PRIMARY KEY (id)
       );
-
+-- created_at TIMESTAMP NOT NULL,
 CREATE TABLE IF NOT EXISTS charities  (
       id INTEGER NOT NULL AUTO_INCREMENT,
       name VARCHAR(30) NOT NULL,
@@ -29,6 +29,8 @@ CREATE TABLE IF NOT EXISTS charities  (
       description MEDIUMTEXT NOT NULL,
       location VARCHAR(155) NOT NULL,
       owner_id integer,
+      
+      date TIMESTAMP DEFAULT CURRENT_TIMESTAMP, 
       FOREIGN KEY (owner_id) REFERENCES users(id), 
       image VARCHAR(355) NOT NULL DEFAULT '',
       PRIMARY KEY (id)

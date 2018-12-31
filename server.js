@@ -65,156 +65,37 @@ app.post('/account/signup', (req, res, next) => {
 
 })
 
-//azhar
-
-// NOTE: when user get somthing from the addPost
-app.post('/charities',function(req,res){
-  // console.log(req.body,"owner_ido/*/*/*/**/*/*/*/**/*/*/**/*/*/*//*/*wner_idowner_id")
-    // column name inside the charities table (id	name	amount	description	location	owner_id)
-
-    var id = req.body.id;
-    //image
-    var image = req.body.image;
-    var description = req.body.description;
-    var name = req.body.name;
-    var location = req.body.location;
-    var amount = req.body.amount;
-    // var date = new Date();
-    // console.log(date)
-
-     var owner_id = req.body.owner_id;
-
-    
-    // console.log(req.body);
-
-    // NOTE: Query to insert the charities information
-    // id	name	amount	description	location	owner_id
-  // changed from batata to charity
-    var charity = `insert into charities (name, amount, description, location,image,owner_id)
-    values
-    (\"${name}\",\"${amount}\",\"${description}\",\"${location}\",\"${image}\",\"${owner_id}\")`
-
-// ,\"${owner_id}\"
-    // NOTE: insert post information to the database
-    Schema.query(charity, function(err, result) {
-      if (result) {
-        res.send("charity added scusesfully ")
-      } else {
-        res.send(err)
-      }
-    })
-
-
-  });
-
-// app.post('/charities',function(req,res){
-//   console.log(req.body,"owner_ido/*/*/*/**/*/*/*/**/*/*/**/*/*/*//*/*wner_idowner_id")
-//     // id	name	amount	description	location	owner_id
-
-//     var id = req.body.id;
-//     var description = req.body.description;
-//     var name = req.body.name;
-//     var location = req.body.location;
-//     var amount = req.body.amount;
-//     var owner_id = req.body.owner_id;
-
-    
-//     console.log(req.body);
-
-//     // NOTE: Query to insert the charities information
-//     // id	name	amount	description	location	owner_id
-
-//     var batata = `insert into charities (name, amount, description, location, owner_id)
-//     values
-//     (\"${name}\",\"${amount}\",\"${description}\",\"${location}\",\"${owner_id}\")`
-
-
-//     // NOTE: insert post information to the database
-//     dbConnection.Schema.query(batata, function(err, result) {
-//       if (result) {
-//         res.send("charity added scusesfully ")
-//       } else {
-//         res.send(err)
-//       }
-//     })
-
-
-//   });
-// get all charities from specific user
-app.post('/userCharities',function(req, res) {
-  // ORDER BY column1, column2, ... ASC|DESC;
-  console.log(req.body,"usrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr")
-  var owner_id = req.body.owner_id
-  // ORDER BY date DESC
-  dbOpt.getUserChar(req, res)
+// Post charities in DB
+app.post('/charities',function(req,res){  
+    dbOpt.addCharity(req, res)
 });
 
+// Get charities by user
+app.post('/userCharities', function(req, res) {
+  console.log('/userCharities')
+  console.log(req.body.owner_id,"get user charities")
+  // let owner_id = req.body.id
+  dbOpt.getUserChar(req, res) 
+console.log("post userCharities", req)
+});
+
+// Get all charities
+app.get('/charities',function(req, res) {
+  console.log(req.body,"get all charities")
+  // ORDER BY date DESC
+  dbOpt.getAllChar(req, res)
+});
+
+//Update charities
+  app.put('/charities',function(req, res) {
+    dbOpt.updateChar(req, res)
+  });
 
 
-  // get all charities 
- 
-//   app.get('/charities',function(req, res) {
-//     // ORDER BY column1, column2, ... ASC|DESC;
-//     // ORDER BY date DESC
-//     var query = `select * from charities`
-//     Schema.query(query, function(err, result) {
-//       if (result) {
-//         // console.log('result',result)
-//         res.send(result)
-//       } else {
-//         res.send(err)
-//       }
-//     })
-//   });
+//Delete charities
+app.delete('/charities',function(req, res) {
+    dbOpt.delChar(req, res)
 
-
-//   // Api to update charities
-
-//   app.put('/charities',function(req, res) {
-
-//     var id = req.body.id;
-//     var description = req.body.description;
-//     var name = req.body.name;
-//     var location = req.body.location;
-//     var amount = req.body.amount;
-//     var owner_id = req.body.owner_id;
-
-//     // (\"${id}\",\"${name}\",\"${amount}\",\"${description}\",\"${location}\",\"${owner_id}\")`
-
-//     var query = `UPDATE charities SET name=\"${name}\", amount= \"${amount}\", location= \"${location}\", description= \"${description}\" WHERE id=\"${id}\"`
-//     Schema.query(query, function(err, result) {
-//       if (result) {
-//         // console.log('result',result)
-//         res.send("update charities succ")
-//       } else {
-//         res.send(err)
-//       }
-//     })
-//   });
-
-
-//   // Api to delete charities
-  
-//   app.delete('/charities',function(req, res) {
-// console.log("delete rout: ",req.body)
-//     var id = req.body.id;
-
-//     // (\"${id}\",\"${name}\",\"${amount}\",\"${description}\",\"${location}\",\"${owner_id}\")`
-
-//     var query = `DELETE FROM charities WHERE id=\"${id}\"`
-//     Schema.query(query, function(err, result) {
-//       if (result) {
-//         // console.log('result',result)
-//         res.send("delete charities succ")
-//       } else {
-//         res.send(err)
-//       }
-//     })
-//   });
-
-//azhar
-
-/*user///////////////////// */
-  // Api to add users
+  });
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
