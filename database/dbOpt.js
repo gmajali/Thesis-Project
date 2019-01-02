@@ -18,20 +18,18 @@ var knex = require('knex')({
 
   module.exports = {
 		signUp: function(req, res){
-				var password = generateHashPassword(req.body.password);
-				var email = req.body.email;
-				var telephone = req.body.telephone;
-				var name = req.body.name;
-				knex('users').select().where('email', email).then(function(rows){
-					if (rows.length === 0){
-						knex('users').insert({name: name, email: email, password: password, telephone: telephone}).then(result => {
-							console.log(`successful insert ${result}`)
-							// res.JSON({id:result.id,token:})
-						})
-					} else {
-						throw "User already exists!";
-					}           
-				}).catch(err => {
+			var password = generateHashPassword(req.body.password);
+			var email = req.body.email;
+			var telephone = req.body.telephone;
+			var name = req.body.name;
+			knex('users').select().where('email', email).then(function(rows){
+				if (rows.length === 0){
+					knex('users').insert({name: name, email: email, password: password, telephone: telephone, userTypeId: 2}).then(result => {
+						console.log(`successful insert ${result}`)
+					})
+				} else {
+					throw "User already exists!";
+				}}).catch(err => {
 					console.log(`error => ${err}`);
 			});
 		},
@@ -108,11 +106,11 @@ var knex = require('knex')({
 			.where({'id': req.body.id})
 			.update({
 				"name": req.body.name,
-					"amount": req.body.amount,
-					"description":req.body.description,
-					"location": req.body.location,
-					"image": req.body.location,
-					"owner_id": 1
+				"amount": req.body.amount,
+				"description":req.body.description,
+				"location": req.body.location,
+				"image": req.body.location,
+				"owner_id": 1
 			})
 			.then(result => {
 				console.log(`successful update ${result}`)
@@ -144,5 +142,18 @@ var knex = require('knex')({
 					console.log(`error => ${err}`)
 					res.send(err)
 				});
-			}
+			},
+		updateUserType: function(req, res){
+			knex('users')
+			.where({'email': req.body.email})
+			.update({
+				userTypeId: 3
+			}).then(result => {
+				console.log(`successful update ${result}`)
+				res.send("update suc.")
+			}).catch(err => {
+				console.log(`error => ${err}`)
+				res.send(err)
+			});
+		}
   }
