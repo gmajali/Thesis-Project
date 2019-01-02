@@ -32,6 +32,27 @@ class UserProfile extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.onChangePage = this.onChangePage.bind(this);
   }
+  componentDidMount() {
+    var data = { owner_id: 1 };
+    console.log("here owner_id: 1", data);
+    var charAll = $.ajax({
+      url: "/userCharities",
+      type: "POST",
+      data: JSON.stringify(data),
+      contentType: "application/json",
+      success: function (data) {
+        console.log(data, "/charities/charities/charities/charities");
+        this.setState({
+          test: data
+        });
+        return data;
+      }.bind(this),
+      error: function (xhr, status, err) {
+        console.error(this.props.url, status, err.toString());
+      }.bind(this)
+    });
+  }
+
   toggle() {
     this.setState({
       modal: !this.state.modal
@@ -49,15 +70,13 @@ class UserProfile extends React.Component {
       owner_id: 1,
       image: this.state.image
     };
-
-    // console.log("charityObj: ", charityObj);
     $.ajax({
       url: "/charities",
       type: "POST",
       data: JSON.stringify(charityObj),
       contentType: "application/json",
       success: function (data) {
-        console.log("pleasssssss", data);
+        console.log("ad charities in Db", data);
       },
       error: function (error) {
         console.error("errorrrrrr", error);

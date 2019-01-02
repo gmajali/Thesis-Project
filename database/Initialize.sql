@@ -13,15 +13,15 @@ CREATE TABLE IF NOT EXISTS users (
         id INTEGER NOT NULL AUTO_INCREMENT,
         name VARCHAR(30) NOT NULL,
         email VARCHAR(100) NOT NULL,
-        password VARCHAR(50) NOT NULL,
+        password VARCHAR(355) NOT NULL,
         telephone VARCHAR(50) NOT NULL,
-        created_at TIMESTAMP NOT NULL,
+        created_at TIMESTAMP NOT NULL DEFAULT NOW(),
         imgUrl VARCHAR(355) NOT NULL DEFAULT '',
         userTypeId integer,
         FOREIGN KEY (userTypeId) REFERENCES usertype(id), 
         PRIMARY KEY (id)
       );
-
+-- created_at TIMESTAMP NOT NULL,
 CREATE TABLE IF NOT EXISTS charities  (
       id INTEGER NOT NULL AUTO_INCREMENT,
       name VARCHAR(30) NOT NULL,
@@ -29,8 +29,9 @@ CREATE TABLE IF NOT EXISTS charities  (
       description MEDIUMTEXT NOT NULL,
       location VARCHAR(155) NOT NULL,
       owner_id integer,
-      FOREIGN KEY (owner_id) REFERENCES users(id), 
+      date TIMESTAMP DEFAULT CURRENT_TIMESTAMP, 
       image VARCHAR(355) NOT NULL DEFAULT '',
+      FOREIGN KEY (owner_id) REFERENCES users(id), 
       PRIMARY KEY (id)
     );
 

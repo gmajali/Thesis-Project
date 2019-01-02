@@ -36,15 +36,15 @@ class Home extends React.Component {
       <div className="img-container">
         <img src={redone} alt='not loading' />
         <button className='btn btn-lg' >Fundraising</button>
-        <div>
-          <Row>
+      </div>
+      <div>
+        <Row>
+          <div>
             {this.state.test.map(item => (
-              <HomeCharities key={item.id} item={item} />
+              < HomeCharities key={item.id} item={item} />
             ))}
-          </Row>
-        </div>
-        <div>
-        </div>
+          </div>
+        </Row>
       </div>
     )
   }
