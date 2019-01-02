@@ -120,6 +120,29 @@ var knex = require('knex')({
 				res.send(err)
 			});
 		},
+		addDonation: function (req, res) {
+			console.log(req.body, 'here add Donations DB')
+				knex('Donations').insert({
+					"donated_amount": req.body.donated_amount,
+					"user_id": 1,
+					"charities_id":req.body.charities_id
+				}).then(result => {
+					console.log(`successful insert ${result}`)
+				}).catch(err => {
+					console.log(`error => ${err}`)
+				});
+			},
+		sumDonationByCharId: function(req, res) {
+				knex('Donations')
+				.sum('donated_amount')
+				.where({'charities_id': req.body.charities_id}).then(result => {
+					console.log(`successful Sum Amounts ${result}`)
+					res.send(result)
+				}).catch(err => {
+					console.log(`error => ${err}`)
+					res.send(err)
+				});
+			},
 		updateUserType: function(req, res){
 			knex('users')
 			.where({'email': req.body.email})

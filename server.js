@@ -59,6 +59,7 @@ app.post('/account/signup', (req, res, next) => {
     }
     email = email.toLowerCase();
     dbOpt.signUp(req, res);
+    
 
 })
 
@@ -119,5 +120,16 @@ app.delete('/charities',function(req, res) {
     dbOpt.delChar(req, res)
 
   });
+
+//Add Donation
+app.post('/addDonation',function(req, res) {
+   dbOpt.addDonation(req, res)
+});
+
+
+//Total of donation for specific charity
+app.post('/totalDonation',function(req, res) {
+  dbOpt.sumDonationByCharId(req, res)
+});
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
