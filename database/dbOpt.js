@@ -26,6 +26,7 @@ var knex = require('knex')({
 					if (rows.length === 0){
 						knex('users').insert({name: name, email: email, password: password, telephone: telephone}).then(result => {
 							console.log(`successful insert ${result}`)
+							// res.JSON({id:result.id,token:})
 						})
 					} else {
 						throw "User already exists!";
@@ -120,5 +121,28 @@ var knex = require('knex')({
 				console.log(`error => ${err}`)
 				res.send(err)
 			});
-		}
+		},
+		addDonation: function (req, res) {
+			console.log(req.body, 'here add Donations DB')
+				knex('Donations').insert({
+					"donated_amount": req.body.donated_amount,
+					"user_id": 1,
+					"charities_id":req.body.charities_id
+				}).then(result => {
+					console.log(`successful insert ${result}`)
+				}).catch(err => {
+					console.log(`error => ${err}`)
+				});
+			},
+		sumDonationByCharId: function(req, res) {
+				knex('Donations')
+				.sum('donated_amount')
+				.where({'charities_id': req.body.charities_id}).then(result => {
+					console.log(`successful Sum Amounts ${result}`)
+					res.send(result)
+				}).catch(err => {
+					console.log(`error => ${err}`)
+					res.send(err)
+				});
+			}
   }
