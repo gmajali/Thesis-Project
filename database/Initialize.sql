@@ -62,12 +62,13 @@ CREATE TABLE IF NOT EXISTS address (
 
 CREATE TABLE IF NOT EXISTS Donations (
       id INTEGER AUTO_INCREMENT NOT NULL,
-      donation_to INTEGER(155) NOT NULL,
+      -- donation_to INTEGER(155) NOT NULL,
       donated_amount INTEGER(15) NOT NULL,
       user_id integer,
-      payment_id integer,
+      -- payment_id integer,
+      charities_id integer,
       FOREIGN KEY (user_id) REFERENCES users(id), 
-      FOREIGN KEY (payment_id) REFERENCES payments(id),
-      FOREIGN KEY (donation_to) REFERENCES charities(id),
+      -- FOREIGN KEY (payment_id) REFERENCES payments(id),
+      FOREIGN KEY (charities_id) REFERENCES charities(id),
       PRIMARY KEY (id)
     );

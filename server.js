@@ -59,6 +59,7 @@ app.post('/account/signup', (req, res, next) => {
     }
     email = email.toLowerCase();
     dbOpt.signUp(req, res);
+    
 
 })
 
@@ -90,16 +91,12 @@ app.post('/charities',function(req,res){
 
 // Get charities by user
 app.post('/userCharities', function(req, res) {
-  console.log('/userCharities')
-  console.log(req.body.owner_id,"get user charities")
-  // let owner_id = req.body.id
   dbOpt.getUserChar(req, res) 
-console.log("post userCharities", req)
 });
 
 // Get all charities
 app.get('/charities',function(req, res) {
-  console.log(req.body,"get all charities")
+  // console.log(req.body,"get all charities")
   // ORDER BY date DESC
   dbOpt.getAllChar(req, res)
 });
@@ -109,11 +106,27 @@ app.get('/charities',function(req, res) {
     dbOpt.updateChar(req, res)
   });
 
+//Update usertype
+app.put('/account/usertype',function(req, res) {
+  dbOpt.updateUserType(req, res)
+});
 
 //Delete charities
 app.delete('/charities',function(req, res) {
     dbOpt.delChar(req, res)
 
   });
+
+
+//Add Donation
+app.post('/addDonation',function(req, res) {
+   dbOpt.addDonation(req, res)
+});
+
+
+//Total of donation for specific charity
+app.post('/totalDonation',function(req, res) {
+  dbOpt.sumDonationByCharId(req, res)
+});
 
 module.exports = app.listen(port, () => console.log(`Listening on port ${port}`));
