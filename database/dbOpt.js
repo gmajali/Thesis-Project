@@ -1,30 +1,41 @@
-const express = require('express');
 const bcrypt = require('bcrypt-nodejs');
+const jwt = require('jsonwebtoken');
+const config = require('../config');
 
 var knex = require('knex')({
     client: 'mysql',
     connection: {
-        host: "db4free.net",
-        user: "corei4",
-        password: 'corei4corei4',
-        insecureAuth: true,
-        database: 'charity_rbk'
+			host: "db4free.net",
+			user: "corei4",
+			password: 'corei4corei4',
+			insecureAuth: true,
+			database: 'charity_rbk'
     }
   });
 
   function generateHashPassword(password){
-      return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
-  };
+		return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
+	};
+	
+	function generateJwt() {
+		return jwt.sign({
+			id: this._id,
+			email: this.email,
+			firstName: this.firstName,
+			lastName: this.lastName,
+		}, config.jwtSecret);
+	}
 
   module.exports = {
 		signUp: function(req, res){
-			var password = generateHashPassword(req.body.password);
-			var email = req.body.email;
-			var telephone = req.body.telephone;
-			var name = req.body.name;
+			const password = generateHashPassword(req.body.password);
+			const email = req.body.email;
+			const telephone = req.body.telephone;
+			const firstName = req.body.firstName;
+			const lastName = req.body.lastName;
 			knex('users').select().where('email', email).then(function(rows){
 				if (rows.length === 0){
-					knex('users').insert({name: name, email: email, password: password, telephone: telephone, userTypeId: 2}).then(result => {
+					knex('users').insert({firstName: firstName, lastName: lastName, email: email, password: password, telephone: telephone, userTypeId: 2}).then(result => {
 						console.log(`successful insert ${result}`)
 					})
 				} else {
