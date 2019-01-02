@@ -11,7 +11,8 @@ insert into usertype(user_type)
 
 CREATE TABLE IF NOT EXISTS users (
         id INTEGER NOT NULL AUTO_INCREMENT,
-        name VARCHAR(30) NOT NULL,
+        firstName VARCHAR(30) NOT NULL,
+        lastName VARCHAR(30) NOT NULL,
         email VARCHAR(100) NOT NULL,
         password VARCHAR(355) NOT NULL,
         telephone VARCHAR(50) NOT NULL,
