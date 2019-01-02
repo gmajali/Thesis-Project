@@ -1,24 +1,21 @@
 import React from 'react';
-import { TabContent, TabPane, Nav, NavItem, Row, Col } from 'reactstrap';
-import classnames from 'classnames';
-import $ from "jquery";
-import './style.css';
-import Pagination from './Pagination';
-import CharityCard from './CharityCard.js';
-import FavCard from './FavCard';
+// import { TabContent, TabPane, Nav, NavItem, Row, Col } from 'reactstrap';
+// import classnames from 'classnames';
+// import $ from "jquery";
+// import './style.css';
+// import Pagination from './Pagination';
+// import FavCard from './FavCard';
 import axios from 'axios';
+import organizations from '../organizations';
 
 export default class Tabs extends React.Component {
   constructor(props) {
     super(props);
-    // var exampleItems = [{ id: 1, name: 'firas' }]
     this.toggle = this.toggle.bind(this);
     this.state = {
       activeTab: '1',
       exampleItems: []
-      // pageOfItems: []
     };
-    // console.log(this.state.pageOfItems, 'pageOfItems')
     this.onChangePage = this.onChangePage.bind(this);
   }
   onChangePage(pageOfItems) {
@@ -79,7 +76,7 @@ export default class Tabs extends React.Component {
         <div>
           {this.state.exampleItems !== [] && this.state.exampleItems.map(item => {
             return (
-              <CharityCard item={item} />
+              <organizations item={item} />
             )
           }
           )}

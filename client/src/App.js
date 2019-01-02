@@ -1,15 +1,12 @@
 import React, { Component } from 'react';
-import MyNavBar from './NavBar/MyNavBar';
-import $ from "jquery";
-import './App.css';
-import Home from './SlideShow/Home';
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import Signup from './components/Signup'
-import SignIn from './components/SignIn'
-import CharityCard from './userProfile/CharityCard'
-import UserProfile from './userProfile/UserProfile';
-import CreateEvent from './components/createEvent';
-// import eventsList from './components/eventsList';
+import organizations from './ReactRedux/components/organizations'
+import CreateEvent from './ReactRedux/components/createEvent';
+import MyNavBar from './ReactRedux/components/NavBar/MyNavBar.js';
+import Home from './ReactRedux/components/SlideShow/Home';
+import Signup from './ReactRedux/components/Signup'
+import SignIn from './ReactRedux/components/SignIn'
+import UserProfile from './ReactRedux/components/userProfile/UserProfile';
 
 class App extends Component {
   constructor(props) {
@@ -27,7 +24,7 @@ class App extends Component {
           <MyNavBar />
           <Switch>
             <Route exact path='/' component={Home} />
-            <Route path='/CharityCard' component={CharityCard} />
+            <Route path='/organizations' component={organizations} />
             <Route path='/Signup' component={Signup} />
             <Route path='/SignIn' component={SignIn} />
             <Route path='/profile' component={UserProfile} />

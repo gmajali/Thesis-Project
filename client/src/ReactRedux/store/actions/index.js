@@ -10,7 +10,7 @@ export function addArticle(payload) {
 export function addAge(age) {
     return { type: ADD_AGE, age };
 }
-
+// test
 export function addUser(user) {
   return { type:ADD_USER, user}
 }
