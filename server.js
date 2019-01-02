@@ -33,33 +33,33 @@ app.post('/account/signup', (req, res, next) => {
   const telephone = req.body.telephone;
   const password = req.body.password;
 
-    if (!name){
-      return res.send({
-        success: false,
-        message: 'Error: must fill in name field.'
-      });
-    }
-    if (!email){
-      return res.send({
-        success: false,
-        message: 'Error: must fill in email field.'
-      });
-    }
-    if (!password){
-      return res.send({
-        success: false,
-        message: 'Error: must fill in password field.'
-      });
-    }
-    if (!telephone){
-      return res.send({
-        success: false,
-        message: 'Error: must fill in phone number field.'
-      });
-    }
-    email = email.toLowerCase();
-    dbOpt.signUp(req, res);
-    
+  if (!name) {
+    return res.send({
+      success: false,
+      message: 'Error: must fill in name field.'
+    });
+  }
+  if (!email) {
+    return res.send({
+      success: false,
+      message: 'Error: must fill in email field.'
+    });
+  }
+  if (!password) {
+    return res.send({
+      success: false,
+      message: 'Error: must fill in password field.'
+    });
+  }
+  if (!telephone) {
+    return res.send({
+      success: false,
+      message: 'Error: must fill in phone number field.'
+    });
+  }
+  email = email.toLowerCase();
+  dbOpt.signUp(req, res);
+
 });
 
 // User sign in
@@ -67,13 +67,13 @@ app.post('/account/signin', (req, res, next) => {
   let email = req.body.email;
   const password = req.body.password;
 
-  if (!email){
+  if (!email) {
     return res.send({
       success: false,
       message: 'Must fill in Email field'
     });
   }
-  if (!password){
+  if (!password) {
     return res.send({
       success: false,
       message: 'Must fill in Password field'
@@ -85,45 +85,45 @@ app.post('/account/signin', (req, res, next) => {
 });
 
 // Post charities in DB
-app.post('/charities',function(req,res){  
+app.post('/charities', function (req, res) {
   dbOpt.addCharity(req, res)
 });
 
 // Get charities by user
-app.post('/userCharities', function(req, res) {
-  dbOpt.getUserChar(req, res) 
+app.post('/userCharities', function (req, res) {
+  dbOpt.getUserChar(req, res)
 });
 
 // Get all charities
-app.get('/charities',function(req, res) {
+app.get('/charities', function (req, res) {
   // console.log(req.body,"get all charities")
   // ORDER BY date DESC
   dbOpt.getAllChar(req, res)
 });
 
 //Update charities
-  app.put('/charities',function(req, res) {
+app.put('/charities', function (req, res) {
   dbOpt.updateChar(req, res)
 });
 
 //Update usertype
-app.put('/account/usertype',function(req, res) {
+app.put('/account/usertype', function (req, res) {
   dbOpt.updateUserType(req, res)
 });
 
 //Delete charities
-app.delete('/charities',function(req, res) {
+app.delete('/charities', function (req, res) {
   dbOpt.delChar(req, res)
 });
 
 //Add Donation
-app.post('/addDonation',function(req, res) {
-   dbOpt.addDonation(req, res)
+app.post('/addDonation', function (req, res) {
+  dbOpt.addDonation(req, res)
 });
 
 
 //Total of donation for specific charity
-app.post('/totalDonation',function(req, res) {
+app.post('/totalDonation', function (req, res) {
   dbOpt.sumDonationByCharId(req, res)
 });
 
