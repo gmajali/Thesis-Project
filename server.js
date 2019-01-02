@@ -109,6 +109,10 @@ app.get('/charities',function(req, res) {
     dbOpt.updateChar(req, res)
   });
 
+//Update usertype
+app.put('/account/usertype',function(req, res) {
+  dbOpt.updateUserType(req, res)
+});
 
 //Delete charities
 app.delete('/charities',function(req, res) {
