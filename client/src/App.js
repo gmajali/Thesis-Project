@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import MyNavBar from './NavBar/MyNavBar';
+import MyNavBar from './ReactRedux/components/NavBar/MyNavBar.js';
 // import './App.css'
 import $ from "jquery";
 
@@ -7,15 +7,14 @@ import $ from "jquery";
 // import SlideShow from './SlideShow/SlideShow';
 // import Form from './js/components/form'
 // import List from './js/components/list'
-import './App.css';
 
 
-import Home from './SlideShow/Home';
+import Home from './ReactRedux/components/SlideShow/Home';
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import Signup from './components/Signup'
-import SignIn from './components/SignIn'
-import Organization from './components/organizations'
-import UserProfile from './userProfile/UserProfile';
+import Signup from './ReactRedux/components/Signup'
+import SignIn from './ReactRedux/components/SignIn'
+import Organization from './ReactRedux/components/organizations'
+import UserProfile from './ReactRedux/components/userProfile/UserProfile';
 
 class App extends Component {
   constructor(props) {

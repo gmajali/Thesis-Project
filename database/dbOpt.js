@@ -57,7 +57,7 @@ var knex = require('knex')({
 		},
 		getAllChar: function (req, res) {
 			knex.select().table('charities').then( (err, result) => {
-				console.log('Initialized successfully');
+				console.log('Get all charities');
 				if (result) {
 					res.send(result)
 				} else {
@@ -67,7 +67,7 @@ var knex = require('knex')({
 		},
 		getUserChar: function (req, res) {
 			knex('charities').select().where('owner_id', 1).then( (err, result) => {
-				console.log('Initialized successfully');
+				console.log('Get user charities');
 				if (result) {
 					res.send(result)
 				} else {
