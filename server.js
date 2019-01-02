@@ -60,9 +60,9 @@ app.post('/account/signup', (req, res, next) => {
     email = email.toLowerCase();
     dbOpt.signUp(req, res);
     
+});
 
-})
-
+// User sign in
 app.post('/account/signin', (req, res, next) => {
   let email = req.body.email;
   const password = req.body.password;
@@ -82,11 +82,11 @@ app.post('/account/signin', (req, res, next) => {
   email = email.toLowerCase();
 
   dbOpt.signIn(req, res);
-})
+});
 
 // Post charities in DB
 app.post('/charities',function(req,res){  
-    dbOpt.addCharity(req, res)
+  dbOpt.addCharity(req, res)
 });
 
 // Get charities by user
@@ -103,8 +103,8 @@ app.get('/charities',function(req, res) {
 
 //Update charities
   app.put('/charities',function(req, res) {
-    dbOpt.updateChar(req, res)
-  });
+  dbOpt.updateChar(req, res)
+});
 
 //Update usertype
 app.put('/account/usertype',function(req, res) {
@@ -113,9 +113,8 @@ app.put('/account/usertype',function(req, res) {
 
 //Delete charities
 app.delete('/charities',function(req, res) {
-    dbOpt.delChar(req, res)
-
-  });
+  dbOpt.delChar(req, res)
+});
 
 
 //Add Donation
