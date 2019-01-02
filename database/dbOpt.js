@@ -56,10 +56,11 @@ var knex = require('knex')({
 			})		
 		},
 		getAllChar: function (req, res) {
-			knex.select().table('charities').then( (err, result) => {
-				console.log('Initialized successfully');
+			knex.select().table('charities').then( (result, err) => {
+				console.log('Initialized successfully',result);
 				if (result) {
-					res.send(result)
+                    res.send(result)
+                    return result;
 				} else {
 					res.send(err)
 				}
@@ -79,7 +80,8 @@ var knex = require('knex')({
 			console.log(req.body, 'here add charities DB')
 				knex('charities').insert({
 					"name": req.body.name,
-					"amount": req.body.amount,
+                    "amount": req.body.amount,
+                    "amount_received": 0,
 					"description":req.body.description,
 					"location": req.body.location,
 					"image": req.body.location,

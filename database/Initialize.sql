@@ -26,6 +26,7 @@ CREATE TABLE IF NOT EXISTS charities  (
       id INTEGER NOT NULL AUTO_INCREMENT,
       name VARCHAR(30) NOT NULL,
       amount INTEGER(155) NOT NULL,
+      amount_received INTEGER(155) NOT NULL,
       description MEDIUMTEXT NOT NULL,
       location VARCHAR(155) NOT NULL,
       owner_id integer,
@@ -67,5 +68,6 @@ CREATE TABLE IF NOT EXISTS Donations (
       payment_id integer,
       FOREIGN KEY (user_id) REFERENCES users(id), 
       FOREIGN KEY (payment_id) REFERENCES payments(id),
+      FOREIGN KEY (donation_to) REFERENCES charities(id),
       PRIMARY KEY (id)
     );
