@@ -116,6 +116,7 @@ app.delete('/charities', function (req, res) {
   dbOpt.delChar(req, res)
 });
 
+
 //Add Donation
 app.post('/addDonation', function (req, res) {
   dbOpt.addDonation(req, res)
@@ -127,4 +128,4 @@ app.post('/totalDonation', function (req, res) {
   dbOpt.sumDonationByCharId(req, res)
 });
 
-app.listen(port, () => console.log(`Listening on port ${port}`));
+module.exports = app.listen(port, () => console.log(`Listening on port ${port}`));

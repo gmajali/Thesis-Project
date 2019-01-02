@@ -72,6 +72,7 @@ module.exports = {
 			console.log('Get all charities');
 			if (result) {
 				res.send(result)
+				return result;
 			} else {
 				res.send(err)
 			}
@@ -92,6 +93,7 @@ module.exports = {
 		knex('charities').insert({
 			"name": req.body.name,
 			"amount": req.body.amount,
+			"amount_received": 0,
 			"description": req.body.description,
 			"location": req.body.location,
 			"image": req.body.location,
@@ -165,6 +167,14 @@ module.exports = {
 			}).catch(err => {
 				console.log(`error => ${err}`)
 				res.send(err)
+			});
+	},
+	donationsToCharity: function (req, res) {
+		knex('Donations')
+			.innerJoin('charities', 'Donations.donated_to', "charities.id")
+			.where('Donations.donated_to', req.body.charities_id)
+			.then(function (data) {
+				res.send(data);
 			});
 	}
 }
