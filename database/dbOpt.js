@@ -156,5 +156,13 @@ var knex = require('knex')({
 				console.log(`error => ${err}`)
 				res.send(err)
 			});
-		}
+        },
+        donationsToCharity: function(req, res){
+            knex('Donations')
+            .innerJoin('charities','Donations.donated_to',"charities.id")
+            .where('Donations.donated_to', req.body.charities_id)
+            .then(function(data){
+                res.send(data);
+            });
+        }
   }
