@@ -63,30 +63,9 @@ export default class Tabs extends React.Component {
   render() {
     return (
       <div className="centerTab">
-        <Nav tabs>
-          <NavItem>
-            <button
-              className={classnames({ active: this.state.activeTab === '1' }), "btnTab"}
-              onClick={() => { this.toggle('1'); }}
-            >
-            Charities
-            
-            </button>
-          </NavItem>
-          <NavItem>
-            <button
-              className={classnames({ active: this.state.activeTab === '2' }), "btnTab"}
-              onClick={() => { this.toggle('2'); }}
-            >
-              Donations
-            </button>
-          </NavItem>
-        </Nav>
-        <TabContent activeTab={this.state.activeTab}>
-          <TabPane tabId="1">
             <Row>
               <Col sm="12">
-              <h4 className="h4pagi">Charities</h4>
+              {/* <h4 className="h4pagi">Charities</h4> */}
               <Row>
               {this.state.pageOfItems.map(item =>
 				        <FavCard key={item.id} item={item}/>	
@@ -97,11 +76,7 @@ export default class Tabs extends React.Component {
             </div>
               </Col>
             </Row>
-          </TabPane>
-          <TabPane tabId="2">
-            Donations Go Here
-          </TabPane>
-        </TabContent>
+         
       </div>
     );
   }

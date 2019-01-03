@@ -69,8 +69,9 @@ class FavCard extends React.Component{
 
 
 
-                <CardLink href="#">View</CardLink>
                 <button href="#" id={this.props.item.id} onClick={this.handleRemove}>Remove</button>
+                <button href="#" id={this.props.item.id} onClick={this.handleRemove}>Edit</button>
+
               </CardBody >
               </Card>
               </Col>

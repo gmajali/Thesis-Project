@@ -92,7 +92,7 @@ var knex = require('knex')({
 				knex('charities').insert({
 					"name": req.body.name,
                     "amount": req.body.amount,
-                    "amount_received": 0,
+                    // "amount_received": 0,
 					"description":req.body.description,
 					"location": req.body.location,
 					"image": req.body.location,
