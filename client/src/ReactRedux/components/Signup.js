@@ -21,10 +21,9 @@ class Signup extends Component {
       [e.target.id]: e.target.value
     });
   };
-  
 
   handleSubmit = e => {
-    var obj = {
+    let obj = {
       firstName: this.state.firstName,
       lastName: this.state.lastName,
       email: this.state.email,

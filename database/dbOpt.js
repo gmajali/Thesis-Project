@@ -17,14 +17,6 @@ function generateHashPassword(password) {
 	return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
 };
 
-function generateJwt() {
-	return jwt.sign({
-		id: this._id,
-		email: this.email,
-		firstName: this.firstName,
-		lastName: this.lastName,
-	}, config.jwtSecret);
-};
 
 module.exports = {
 	signUp: function (req, res) {
@@ -58,9 +50,15 @@ module.exports = {
 							})
 						}
 						if (isMatch) {
-							return res.send({
-								success: true,
-								message: 'Password is correct.'
+							knex.select('firstName', 'lastName', 'email', 'telephone', 'imgUrl', 'userTypeId').from('users').where({'email': email})
+							.then(function(result) {
+								return res.send({
+									success: true,
+									message: 'Password is correct.',
+									token: jwt.sign({
+										result
+									}, config.jwtSecret)
+								})
 							})
 						}
 					})
@@ -176,5 +174,9 @@ module.exports = {
 			.then(function (data) {
 				res.send(data);
 			});
+	},
+	getUserInfo: function(req, res) {
+		var email = req.body.email;
+		knex.select('firstName', 'lastName', 'email', 'telephone', 'imgUrl', 'userTypeId').from('users').where({'email': email})
 	}
 }

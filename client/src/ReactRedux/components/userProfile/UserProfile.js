@@ -90,7 +90,7 @@ class UserProfile extends React.Component {
 
     console.log("charityObj: ", charityObj);
     $.ajax({
-      url: "/charities",
+      url: "/addCharities",
       type: "POST",
       data: JSON.stringify(charityObj),
       contentType: "application/json",

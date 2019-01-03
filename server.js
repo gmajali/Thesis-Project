@@ -92,7 +92,7 @@ app.post('/account/signin', (req, res, next) => {
 });
 
 // Post charities in DB
-app.post('/charities', function (req, res) {
+app.post('/addCharities', function (req, res) {
   dbOpt.addCharity(req, res)
 });
 
