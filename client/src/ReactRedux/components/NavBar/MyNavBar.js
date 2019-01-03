@@ -9,7 +9,6 @@ class MyNavBar extends Component {
   }
    signOut = (event) => {
     localStorage.removeItem('token');
-    this.props.history.push("/Signin");
   }
   render() {
     if(localStorage.getItem('token')){
