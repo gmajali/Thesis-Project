@@ -60,7 +60,7 @@ class CharityCard extends React.Component {
   render() {
     const { classes } = this.props;
     return (
-      <Card className={classes.card} className="container">
+      <Card className={classes.card}>
         <div className="section">
           <CardHeader
             avatar={
@@ -76,11 +76,11 @@ class CharityCard extends React.Component {
             title="{this.props.items.name}"
             subheader="Decemper 14, 2018"
           />
-          {/* <CardMedia
+          <CardMedia
             className={classes.media}
             image="/static/images/cards/paella.jpg"
             title="Paella dish"
-          /> */}
+          />
           <CardContent>
             <Typography component="p">
               asdasd
