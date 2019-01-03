@@ -10,7 +10,7 @@ import Pagination from './Pagination';
 export default class Tabs extends React.Component {
   constructor(props) {
     super(props);
-    var exampleItems = [{name: "lol"},{name: "lol"},{name: "lol"},{name: "lol"},{name: "lol"},{name: "lol"}]
+    var exampleItems = [{id: 1, name: "Wait to fetch data"}]
     // // var exampleItems = [...Array(14).keys()].map(i => ({ id: (i+1), name: 'Item ' + (i+1) }));
     this.toggle = this.toggle.bind(this);
     this.state = {
@@ -24,6 +24,7 @@ export default class Tabs extends React.Component {
   onChangePage(pageOfItems) {
     // update state with new page of items
     this.setState({ pageOfItems: pageOfItems });
+    console.log(pageOfItems)
   }
 
   toggle(tab) {
@@ -69,6 +70,7 @@ export default class Tabs extends React.Component {
               onClick={() => { this.toggle('1'); }}
             >
             Charities
+            
             </button>
           </NavItem>
           <NavItem>
@@ -82,22 +84,17 @@ export default class Tabs extends React.Component {
         </Nav>
         <TabContent activeTab={this.state.activeTab}>
           <TabPane tabId="1">
-
-
             <Row>
               <Col sm="12">
               <h4 className="h4pagi">Charities</h4>
               <Row>
               {this.state.pageOfItems.map(item =>
-				<FavCard key={item.id} item={item}/>	
-              )}
-			</Row>
-			<div>
+				        <FavCard key={item.id} item={item}/>	
+                )}
+			      </Row>
+			      <div>
             <Pagination items={this.state.exampleItems} onChangePage={this.onChangePage} />
             </div>
-
-
-
               </Col>
             </Row>
           </TabPane>
