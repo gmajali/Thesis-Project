@@ -36,9 +36,6 @@ app.post('/account/signup', (req, res, next) => {
   const telephone = req.body.telephone;
   const password = req.body.password;
 
-<<<<<<< HEAD
-  if (!name) {
-=======
   if (!firstName) {
     return res.send({
       success: false,
@@ -46,7 +43,6 @@ app.post('/account/signup', (req, res, next) => {
     });
   }
   if (!lastName) {
->>>>>>> 357164d13525e331b96d6db87874179133b93406
     return res.send({
       success: false,
       message: 'Error: must fill in name field.'
@@ -98,11 +94,7 @@ app.post('/account/signin', (req, res, next) => {
 });
 
 // Post charities in DB
-<<<<<<< HEAD
-app.post('/charities', function (req, res) {
-=======
 app.post('/addCharities', function (req, res) {
->>>>>>> 357164d13525e331b96d6db87874179133b93406
   dbOpt.addCharity(req, res)
 });
 
@@ -129,7 +121,7 @@ app.put('/account/usertype', function (req, res) {
 });
 
 //Delete charities
-app.delete('/charities', function (req, res) {
+app.delete('/delCharities',function(req, res) {
   dbOpt.delChar(req, res)
 });
 
@@ -144,5 +136,14 @@ app.post('/addDonation', function (req, res) {
 app.post('/totalDonation', function (req, res) {
   dbOpt.sumDonationByCharId(req, res)
 });
+
+//Update user information
+app.put('/editUserInfo',function(req, res) {
+  dbOpt.editUserInfo(req, res)
+});
+
+app.post('/decodeToken', function(req, res) {
+  dbOpt.decodeJwt(req, res)
+})
 
 module.exports = app.listen(port, () => console.log(`Listening on port ${port}`));
