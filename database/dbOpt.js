@@ -95,7 +95,7 @@ var knex = require('knex')({
                     // "amount_received": 0,
 					"description":req.body.description,
 					"location": req.body.location,
-					"image": req.body.location,
+					"image": req.body.image,
 					"owner_id": 1
 				}).then(result => {
 					console.log(`successful insert ${result}`)
@@ -108,7 +108,10 @@ var knex = require('knex')({
 			.del()
 			.where({'id': req.body.id}).then(result => {
 				console.log(`successful delete ${result}`)
-				res.send("delete suc.")
+				//console.log();
+				
+				res.send(true);
+
 			}).catch(err => {
 				console.log(`error => ${err}`)
 				res.send(err)
@@ -176,5 +179,22 @@ var knex = require('knex')({
             .then(function(data){
                 res.send(data);
             });
-        }
+		},
+		editUserInfo: function(req, res) {
+			knex('charities')
+			.where({'id': req.body.id})
+			.update({
+				"firstName": req.body.firstName,
+				"lastName": req.body.lastName,
+				"phoneNumber":req.body.phoneNumber,
+				"image": req.body.image,
+			})
+			.then(result => {
+				console.log(`successful update ${result}`)
+				res.send("update suc.")
+			}).catch(err => {
+				console.log(`error => ${err}`)
+				res.send(err)
+			});
+		}
   }

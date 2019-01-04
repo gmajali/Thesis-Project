@@ -40,17 +40,26 @@ class FavCard extends React.Component{
     const id = JSON.parse(target.id);
     $.ajax({
       type: "DELETE",
-      url: "/charities", /* THIS URL IS CALLING CORRECTLY ie. /items/8 */
-      dataType: "json",
+      url: "/delCharities", /* THIS URL IS CALLING CORRECTLY ie. /items/8 */
+      dataType: "text",
       data: {id:id},
       success: function(response) {
           console.log("successfully deleted");
-      },
-      error: function () {
-          console.log("error");
-      }
+          // return ;
+          console.log('response', response)
+        //   if (response === true) {
+        //     for(var i = 0; i < this.props.item.length; i++) {
+        //     if(this.props.item[i].id == id) {
+        //       console.log('index', i)
+        //       this.props.item.splice(i, 1);
+        //         break;
+        //     }
+        // }
+        //   } 
+          
+      }.bind(this)
   });
-  window.location.reload()
+  // window.location.reload()
   }
   render() {
       return (
@@ -66,16 +75,11 @@ class FavCard extends React.Component{
                 <CardText>{this.props.item.description}</CardText>
                 <CardText>{this.props.item.amount}</CardText>
                 <CardText>{this.props.item.location}</CardText>
-
-
-
                 <button href="#" id={this.props.item.id} onClick={this.handleRemove}>Remove</button>
                 <button href="#" id={this.props.item.id} onClick={this.handleRemove}>Edit</button>
-
               </CardBody >
               </Card>
               </Col>
-            
       );
     }
 };
