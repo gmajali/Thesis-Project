@@ -71,7 +71,7 @@ class UserProfile extends React.Component {
       image: this.state.image
     };
     $.ajax({
-      url: "/charities",
+      url: "/addCharities",
       type: "POST",
       data: JSON.stringify(charityObj),
       contentType: "application/json",

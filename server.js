@@ -30,12 +30,23 @@ if (process.env.NODE_ENV === 'production') {
 
 // Signup User
 app.post('/account/signup', (req, res, next) => {
-  const name = req.body.name;
+  const firstName = req.body.firstName;
+  const lastName = req.body.lastName;
   let email = req.body.email;
   const telephone = req.body.telephone;
   const password = req.body.password;
 
+<<<<<<< HEAD
   if (!name) {
+=======
+  if (!firstName) {
+    return res.send({
+      success: false,
+      message: 'Error: must fill in name field.'
+    });
+  }
+  if (!lastName) {
+>>>>>>> 357164d13525e331b96d6db87874179133b93406
     return res.send({
       success: false,
       message: 'Error: must fill in name field.'
@@ -87,7 +98,11 @@ app.post('/account/signin', (req, res, next) => {
 });
 
 // Post charities in DB
+<<<<<<< HEAD
 app.post('/charities', function (req, res) {
+=======
+app.post('/addCharities', function (req, res) {
+>>>>>>> 357164d13525e331b96d6db87874179133b93406
   dbOpt.addCharity(req, res)
 });
 

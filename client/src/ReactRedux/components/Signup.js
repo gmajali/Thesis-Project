@@ -1,23 +1,49 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { signUp } from "../store/actions/index";
+import axios from 'axios';
+
 
 class Signup extends Component {
-  // state = {
-  //   email: '',
-  //   password: '',
-  //   firstName: '',
-  //   lastName: ''
-  // }
+  constructor(props){
+    super(props);
+    this.state = {
+      email: '',
+      password: '',
+      firstName: '',
+      lastName: '',
+      phoneNumber: ''
+    }
+  }
+  
   handleChange = e => {
     this.setState({
       [e.target.id]: e.target.value
     });
   };
+
   handleSubmit = e => {
+    let obj = {
+      firstName: this.state.firstName,
+      lastName: this.state.lastName,
+      email: this.state.email,
+      password: this.state.password,
+      telephone: this.state.phoneNumber
+    }
+    axios({
+      method: 'post',
+      url: '/account/signup',
+      data: obj
+    })
+    .then(function (response) {
+      console.log(response);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
     e.preventDefault();
-    console.log(this.state);
-  };
+  }
+  
   render() {
     return (
       <div className="container">
@@ -30,7 +56,7 @@ class Signup extends Component {
                   id="first_name"
                   type="text"
                   className="validate"
-                  onChange={this.handleChange}
+                  value={this.state.firstName} onChange={e=>this.setState({firstName:e.target.value})}
                 />
                 <label htmlFor="first_name">First Name</label>
               </div>
@@ -39,7 +65,7 @@ class Signup extends Component {
                   id="last_name"
                   type="text"
                   className="validate"
-                  onChange={this.handleChange}
+                  value={this.state.lastName} onChange={e=>this.setState({lastName:e.target.value})}
                 />
                 <label htmlFor="last_name">Last Name</label>
               </div>
@@ -50,7 +76,7 @@ class Signup extends Component {
                   id="email"
                   type="email"
                   className="validate"
-                  onChange={this.handleChange}
+                  value={this.state.email} onChange={e=>this.setState({email:e.target.value})}
                 />
                 <label htmlFor="email">Email</label>
               </div>
@@ -60,7 +86,7 @@ class Signup extends Component {
                 <input
                   type="text"
                   className="validate"
-                  onChange={this.handleChange}
+                  value={this.state.phoneNumber} onChange={e=>this.setState({phoneNumber:e.target.value})}
                 />
                 <label htmlFor="tel">Phone Number</label>
               </div>
@@ -71,7 +97,7 @@ class Signup extends Component {
                   id="password"
                   type="password"
                   className="validate"
-                  onChange={this.handleChange}
+                  value={this.state.password} onChange={e=>this.setState({password:e.target.value})}
                 />
                 <label htmlFor="password">Password</label>
               </div>
