@@ -30,8 +30,6 @@ class UserProfile extends React.Component {
     //var result = getAllCh();
 
     var result = [{ id: 1, name: "Azhar" }];
-
-    console.log("hhhhhhhhhh", result);
     var exampleItems = result.map(i => ({
       id: i.id,
       name: i.name
@@ -58,7 +56,6 @@ class UserProfile extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.onChangePage = this.onChangePage.bind(this);
   }
-
   componentDidMount() {
     console.log()
     var data = { owner_id: 1 };
@@ -68,14 +65,14 @@ class UserProfile extends React.Component {
       type: "POST",
       data: JSON.stringify(data),
       contentType: "application/json",
-      success: function(data) {
+      success: function (data) {
         console.log(data, "/charities/charities/charities/charities");
         this.setState({
           test: data
         });
         return data;
       }.bind(this),
-      error: function(xhr, status, err) {
+      error: function (xhr, status, err) {
         console.error(this.props.url, status, err.toString());
       }.bind(this)
     });
@@ -102,7 +99,7 @@ class UserProfile extends React.Component {
 
   handleSubmit() {
     this.toggle();
-    console.log("handleSubmit");
+    // console.log("handleSubmit");
     const charityObj = {
       name: this.state.name,
       amount: this.state.amount,
@@ -123,11 +120,11 @@ class UserProfile extends React.Component {
       type: "POST",
       data: JSON.stringify(charityObj),
       contentType: "application/json",
-      success: function(data) {
+      success: function (data) {
         console.log("ad charities in Db", data);
       },
-      error: function(error) {
-        console.error("errorrrrrr", error);
+      error: function (error) {
+        console.error("errorrrrrr/*/*/*/*/*/*/*/*/*/", error);
       }
     });
     // window.location.reload();
@@ -199,18 +196,14 @@ class UserProfile extends React.Component {
           image: data.data.link
         });
       },
-      error: function(error) {
+      error: function (error) {
         console.error("image not uploaded", error);
       }
     });
-    // window.location.reload()
   }
-
   onChangePage(pageOfItems) {
-    // update state with new page of items
     this.setState({ pageOfItems: pageOfItems });
   }
-
   render() {
     return (
       <div class="container-fluid">

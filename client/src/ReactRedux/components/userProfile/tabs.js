@@ -1,26 +1,28 @@
 import React from 'react';
-import { TabContent, TabPane, Nav, NavItem, Row, Col } from 'reactstrap';
-import classnames from 'classnames';
-import $ from "jquery";
-
+import axios from 'axios';
 import FavCard from "./FavCard.js";
 import './style.css';
 import Pagination from './Pagination';
+// import organizations from '../organizations';
+// Row
+import {
+  Card, CardText, CardBody, CardLink,
+  CardTitle, CardSubtitle, Row, Col, Container
+} from 'reactstrap';
 
 export default class Tabs extends React.Component {
   constructor(props) {
     super(props);
-    var exampleItems = [{id: 1, name: "Wait to fetch data"}]
-    // // var exampleItems = [...Array(14).keys()].map(i => ({ id: (i+1), name: 'Item ' + (i+1) }));
+    var exampleItems = [{ id: 1, name: "Wait to fetch data" }]
     this.toggle = this.toggle.bind(this);
     this.state = {
       activeTab: '1',
-      exampleItems: exampleItems,
+      exampleItems: [],
       pageOfItems: []
+
     };
     this.onChangePage = this.onChangePage.bind(this);
   }
-
   onChangePage(pageOfItems) {
     // update state with new page of items
     this.setState({ pageOfItems: pageOfItems });
@@ -34,31 +36,22 @@ export default class Tabs extends React.Component {
       });
     }
   }
-
-
   componentDidMount() {
-    var data = { owner_id: 1 };
-    console.log("here");
-    $.ajax({
-      // url: '/userCharities',
-      url: "/userCharities",
-      type: "POST",
-      data: JSON.stringify(data),
-      contentType: "application/json",
-      success: function(data) {
-        console.log(data, "/charities/charities/charities/charities");
-        this.setState({
-            exampleItems: data
+    let that = this;
+    axios.post('/userCharities', {
+      owner_id: 1
+    })
+      .then(function (res) {
+        console.log(res);
+        that.setState({
+          exampleItems: res.data
         });
-        return data;
-      }.bind(this),
-      error: function(xhr, status, err) {
-        console.error(this.props.url, status, err.toString());
-      }.bind(this)
-    });
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+    console.log(this.state.exampleItems, 'exampleItems')
   }
-
-
 
   render() {
     return (

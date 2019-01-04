@@ -3,12 +3,14 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const Schema = require('./database/Schema');
 const dbOpt = require('./database/dbOpt');
+const stripe = require('stripe')("sk_test_S3OtpMpuhIGF1KuyUMJaVtNN")
+// const hbs = require('hbs');
+
 
 const app = express();
 const port = process.env.PORT || 5000;
 
 app.use(bodyParser.json());
-
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.post('/api/initializeDB', (req, res) => {

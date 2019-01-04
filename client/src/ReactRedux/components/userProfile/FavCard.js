@@ -1,41 +1,21 @@
 import React from 'react';
-import { Card, CardText, CardBody, CardLink,
-  CardTitle, CardSubtitle, Row, Col, Container } from 'reactstrap';
+import {
+  Card, CardText, CardBody, CardLink,
+  CardTitle, CardSubtitle, Row, Col, Container
+} from 'reactstrap';
 import PropTypes from 'prop-types';
 import './style.css';
 import $ from "jquery";
 
-// import chArr from '../Services/Charities';
-
-
-class FavCard extends React.Component{
+class FavCard extends React.Component {
   constructor(props) {
     super(props)
-
-    this.state ={
+    this.state = {
       toggle: false
     }
-
   }
-
-  handleRemove = (event) =>{
-    console.log("removeBTN",event.target.id)
-    // $.ajax({
-    //   url: '/charities',
-    //   dataType: 'json',
-    //   type: "delete",
-    //   success: function(data) {
-    //       console.log(data,"/charities/charities/charities/charities")
-    //       this.setState({
-    //         test: data
-    //       })
-    //    return data;
-    //   }.bind(this),
-    //   error: function(xhr, status, err) {
-    //     console.error(this.props.url, status, err.toString());
-    //   }.bind(this)
-    // });
-    
+  handleRemove = (event) => {
+    console.log("removeBTN", event.target.id)
     const target = event.target;
     const id = JSON.parse(target.id);
     $.ajax({
@@ -88,7 +68,7 @@ class FavCard extends React.Component{
 
 
 Container.propTypes = {
-  fluid:  PropTypes.bool
+  fluid: PropTypes.bool
   // applies .container-fluid class
 }
 
