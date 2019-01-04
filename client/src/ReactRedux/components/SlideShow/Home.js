@@ -1,5 +1,6 @@
 import React from 'react';
 import { Row } from 'reactstrap';
+import { Link } from 'react-router-dom';
 import './Home.css';
 import redone from './redone.jpg';
 import HomeCharities from '../HomeCharities.js';
@@ -35,7 +36,9 @@ class Home extends React.Component {
     return (
       <div className="img-container">
         <img src={redone} alt='not loading' />
-        <button className='btn btn-lg' >Fundraising</button>
+        <Link to="/CharityCard" style={{ textDecoration: 'none', color: "white" }}>
+          <button className='btn btn-lg' >Fundraising</button>
+        </Link>
         <div>
           <Row>
             <div>

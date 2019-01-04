@@ -7,6 +7,7 @@ import Home from './ReactRedux/components/SlideShow/Home';
 import Signup from './ReactRedux/components/Signup'
 import SignIn from './ReactRedux/components/SignIn'
 import UserProfile from './ReactRedux/components/userProfile/UserProfile';
+import creditCard from './ReactRedux/components/payment/creditCard'
 
 class App extends Component {
   constructor(props) {
@@ -29,6 +30,7 @@ class App extends Component {
             <Route path='/SignIn' component={SignIn} />
             <Route path='/profile' component={UserProfile} />
             <Route path='/create' component={CreateEvent} />
+            <Route path='/creditcard' component={creditCard} />
           </Switch>
         </div>
       </BrowserRouter>
