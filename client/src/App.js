@@ -10,7 +10,7 @@ import $ from "jquery";
 
 
 import Home from './ReactRedux/components/SlideShow/Home';
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { BrowserRouter, Route, Switch, Link, withRouter } from "react-router-dom";
 import Signup from './ReactRedux/components/Signup'
 import SignIn from './ReactRedux/components/SignIn'
 import Organization from './ReactRedux/components/organizations'
@@ -47,4 +47,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default App

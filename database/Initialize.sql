@@ -31,7 +31,6 @@ CREATE TABLE IF NOT EXISTS charities  (
       description MEDIUMTEXT NOT NULL,
       location VARCHAR(155) NOT NULL,
       owner_id integer,
-      date TIMESTAMP DEFAULT CURRENT_TIMESTAMP, 
       image VARCHAR(355) NOT NULL DEFAULT '',
       FOREIGN KEY (owner_id) REFERENCES users(id), 
       PRIMARY KEY (id)
@@ -70,6 +69,5 @@ CREATE TABLE IF NOT EXISTS Donations (
       payment_id integer,
       FOREIGN KEY (user_id) REFERENCES users(id), 
       FOREIGN KEY (payment_id) REFERENCES payments(id),
-      FOREIGN KEY (donation_to) REFERENCES charities(id),
       PRIMARY KEY (id)
     );
