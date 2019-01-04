@@ -3,7 +3,6 @@ import axios from 'axios';
 const jwtDecode = require('jwt-decode');
 
 
-
 class SignIn extends Component {
   state = {
     email: '',
@@ -25,6 +24,8 @@ class SignIn extends Component {
       data: obj
     })
     .then(function (response) {
+      localStorage.setItem('token', response.data.token);
+      console.log('TOKEN', jwtDecode(localStorage.getItem('token')))
       window.localStorage.setItem('token', response.data.token);
       console.log('TOKEN////////', jwtDecode(window.localStorage.getItem('token')))
       var userData = jwtDecode(window.localStorage.getItem('token')).result
@@ -35,6 +36,9 @@ class SignIn extends Component {
       window.localStorage.setItem('telephone', userData[0].telephone)
       window.localStorage.setItem('lastName', userData[0].lastName)
       window.localStorage.setItem('imgUrl', userData[0].imgUrl)
+
+      window.location.href = '/profile';
+
       this.setState({
         isLoggedIn: true
       })
