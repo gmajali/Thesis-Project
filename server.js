@@ -3,12 +3,14 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const Schema = require('./database/Schema');
 const dbOpt = require('./database/dbOpt');
+const stripe = require('stripe')("sk_test_S3OtpMpuhIGF1KuyUMJaVtNN")
+// const hbs = require('hbs');
+
 
 const app = express();
 const port = process.env.PORT || 5000;
 
 app.use(bodyParser.json());
-
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.post('/api/initializeDB', (req, res) => {
@@ -34,6 +36,9 @@ app.post('/account/signup', (req, res, next) => {
   const telephone = req.body.telephone;
   const password = req.body.password;
 
+<<<<<<< HEAD
+  if (!name) {
+=======
   if (!firstName) {
     return res.send({
       success: false,
@@ -41,6 +46,7 @@ app.post('/account/signup', (req, res, next) => {
     });
   }
   if (!lastName) {
+>>>>>>> 357164d13525e331b96d6db87874179133b93406
     return res.send({
       success: false,
       message: 'Error: must fill in name field.'
@@ -92,7 +98,11 @@ app.post('/account/signin', (req, res, next) => {
 });
 
 // Post charities in DB
+<<<<<<< HEAD
+app.post('/charities', function (req, res) {
+=======
 app.post('/addCharities', function (req, res) {
+>>>>>>> 357164d13525e331b96d6db87874179133b93406
   dbOpt.addCharity(req, res)
 });
 
