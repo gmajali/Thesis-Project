@@ -25,9 +25,10 @@ module.exports = {
 		const telephone = req.body.telephone;
 		const firstName = req.body.firstName;
 		const lastName = req.body.lastName;
+		const image = req.body.image;
 		knex('users').select().where('email', email).then(function (rows) {
 			if (rows.length === 0) {
-				knex('users').insert({ firstName: firstName, lastName: lastName, email: email, password: password, telephone: telephone, userTypeId: 2 }).then(result => {
+				knex('users').insert({ firstName: firstName, lastName: lastName, email: email, password: password, telephone: telephone,  imgUrl: image, userTypeId: 2 }).then(result => {
 					console.log(`successful insert ${result}`)
 				})
 			} else {
@@ -50,7 +51,7 @@ module.exports = {
 							})
 						}
 						if (isMatch) {
-							knex.select('firstName', 'lastName', 'email', 'telephone', 'imgUrl', 'userTypeId').from('users').where({'email': email})
+							knex.select('firstName', 'lastName', 'email', 'telephone', 'imgUrl', 'userTypeId','id').from('users').where({'email': email})
 							.then(function(result) {
 								return res.send({
 									success: true,
@@ -224,5 +225,14 @@ module.exports = {
 	getUserInfo: function(req, res) {
 		var email = req.body.email;
 		knex.select('firstName', 'lastName', 'email', 'telephone', 'imgUrl', 'userTypeId').from('users').where({'email': email})
+	},
+
+	decodeJwt: function(req,res){
+		var token = req.body.token;
+		jwt.verify(token,"secret", function(err, decoded) {
+			console.log(decoded)
+			res.json(decoded.result)
+		})
 	}
+	
 }

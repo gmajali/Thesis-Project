@@ -28,6 +28,7 @@ class UserProfile extends React.Component {
   constructor(props) {
     super(props);
     //var result = getAllCh();
+
     var result = [{ id: 1, name: "Azhar" }];
 
     console.log("hhhhhhhhhh", result);
@@ -45,7 +46,12 @@ class UserProfile extends React.Component {
       isNotUpload: true,
       image: "",
       activeTab: "1",
-      modalEP: false
+      modalEP: false,
+      email: window.localStorage.getItem('email'),
+      firstName: window.localStorage.getItem('firstName'),
+      lastName: window.localStorage.getItem('lastName'),
+      telephone: window.localStorage.getItem('telephone'),
+      imgUrl: window.localStorage.getItem('imgUrl'),
     };
     this.toggle = this.toggle.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -54,6 +60,7 @@ class UserProfile extends React.Component {
   }
 
   componentDidMount() {
+    console.log()
     var data = { owner_id: 1 };
     console.log("here owner_id: 1", data);
     var charAll = $.ajax({
@@ -103,8 +110,13 @@ class UserProfile extends React.Component {
       location: this.state.location,
       owner_id: 1,
       image: this.state.image
+      
     };
-
+    // email: "azzttt@azzttt"
+    // firstName: "azz"
+    // id: "10"
+    // length: 4
+    // telephone: "1234567"
     console.log("charityObj: ", charityObj);
     $.ajax({
       url: "/addCharities",
@@ -246,7 +258,7 @@ class UserProfile extends React.Component {
                       <div className="card-body" id="profile">
                         <div>
                           <img
-                            src="https://www.mikonoexpogroup.com/mikono/wp-content/uploads/2017/12/profile-pictures.png"
+                            src={this.state.imgUrl}
                             alt="User"
                             height="none"
                           />
@@ -254,15 +266,11 @@ class UserProfile extends React.Component {
                         <div />
                         <h4 class="card-title">
                           {" "}
-                          <strong>Azhar Albakri</strong>{" "}
+                          <strong>{this.state.firstName}</strong>{" "}
                         </h4>
-                        <h5 class="card-text"> azhar@gmail.com </h5>
-                        <h5 class="card-text"> +962 79642 6783 </h5>
-                        <p class="card-text">
-                          With supporting text below as a natural lead-in to
-                          additional content.
-                        </p>
-
+                        <h5 class="card-text"> {this.state.email} </h5>
+                        <h5 class="card-text"> {this.state.telephone} </h5>
+                        
                         <Button class="btn btn-success" onClick={this.toggleEP}>
                           {this.props.buttonLabel}
                           Edit profile
@@ -368,6 +376,8 @@ class UserProfile extends React.Component {
                         </Modal>
                         {/* modal add charity */}
 
+
+
                         {/* modal edit profil */}
 
                         <Modal
@@ -391,8 +401,7 @@ class UserProfile extends React.Component {
                                   type="text"
                                   name="firstName"
                                   id="firstName"
-                                  placeholder="input your first name"
-                                  value={this.state.name}
+                                  value={this.state.firstName}
                                   onChange={this.handleInputChangeEP}
                                 />
                                 {/* <small id="emailHelp" class="form-text text-muted">
@@ -407,7 +416,6 @@ class UserProfile extends React.Component {
                                   type="text"
                                   name="lastName"
                                   id="lastName"
-                                  placeholder="input your last name"
                                   value={this.state.lastName}
                                   onChange={this.handleInputChangeEP}
                                 />
@@ -420,25 +428,12 @@ class UserProfile extends React.Component {
                                   type="number"
                                   name="PhoneNumber"
                                   id="PhoneNumber"
-                                  placeholder="input phone number"
-                                  value={this.state.PhoneNumber}
+                                  
+                                  value={this.state.telephone}
                                   onChange={this.handleInputChangeEP}
                                 />
                               </div>
-                              <FileBase64
-                                multiple={true}
-                                onDone={this.getFiles.bind(this)}
-                              />
-                              <div class="form-group form-check">
-                                <input
-                                  type="checkbox"
-                                  class="form-check-input"
-                                  id="exampleCheck1"
-                                />
-                                {/* <label class="form-check-label" for="exampleCheck1">
-                  Check me out
-                </label> */}
-                              </div>
+                            
                               <Button
                                 color="primary"
                                 onClick={this.handleSubmitEP}
@@ -457,6 +452,8 @@ class UserProfile extends React.Component {
                         </Modal>
 
                         {/* modal edit profil */}
+
+
                       </div>
                     </div>
                   </div>
