@@ -1,29 +1,32 @@
 import React from 'react';
-import { TabContent, TabPane, Nav, NavItem, Row, Col } from 'reactstrap';
-import classnames from 'classnames';
-import $ from "jquery";
-
+import axios from 'axios';
 import FavCard from "./FavCard.js";
 import './style.css';
 import Pagination from './Pagination';
+// import organizations from '../organizations';
+// Row
+import {
+  Card, CardText, CardBody, CardLink,
+  CardTitle, CardSubtitle, Row, Col, Container
+} from 'reactstrap';
 
 export default class Tabs extends React.Component {
   constructor(props) {
     super(props);
-    var exampleItems = [{name: "lol"},{name: "lol"},{name: "lol"},{name: "lol"},{name: "lol"},{name: "lol"}]
-    // // var exampleItems = [...Array(14).keys()].map(i => ({ id: (i+1), name: 'Item ' + (i+1) }));
+    var exampleItems = [{ id: 1, name: "Wait to fetch data" }]
     this.toggle = this.toggle.bind(this);
     this.state = {
       activeTab: '1',
-      exampleItems: exampleItems,
+      exampleItems: [],
       pageOfItems: []
+
     };
     this.onChangePage = this.onChangePage.bind(this);
   }
-
   onChangePage(pageOfItems) {
     // update state with new page of items
     this.setState({ pageOfItems: pageOfItems });
+    console.log(pageOfItems)
   }
 
   toggle(tab) {
@@ -33,78 +36,40 @@ export default class Tabs extends React.Component {
       });
     }
   }
-
-
   componentDidMount() {
-    var data = { owner_id: 1 };
-    console.log("here");
-    $.ajax({
-      // url: '/userCharities',
-      url: "/userCharities",
-      type: "POST",
-      data: JSON.stringify(data),
-      contentType: "application/json",
-      success: function(data) {
-        console.log(data, "/charities/charities/charities/charities");
-        this.setState({
-            exampleItems: data
+    let that = this;
+    axios.post('/userCharities', {
+      owner_id: 1
+    })
+      .then(function (res) {
+        console.log(res);
+        that.setState({
+          exampleItems: res.data
         });
-        return data;
-      }.bind(this),
-      error: function(xhr, status, err) {
-        console.error(this.props.url, status, err.toString());
-      }.bind(this)
-    });
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+    console.log(this.state.exampleItems, 'exampleItems')
   }
-
-
 
   render() {
     return (
       <div className="centerTab">
-        <Nav tabs>
-          <NavItem>
-            <button
-              className={classnames({ active: this.state.activeTab === '1' }), "btnTab"}
-              onClick={() => { this.toggle('1'); }}
-            >
-            Charities
-            </button>
-          </NavItem>
-          <NavItem>
-            <button
-              className={classnames({ active: this.state.activeTab === '2' }), "btnTab"}
-              onClick={() => { this.toggle('2'); }}
-            >
-              Donations
-            </button>
-          </NavItem>
-        </Nav>
-        <TabContent activeTab={this.state.activeTab}>
-          <TabPane tabId="1">
-
-
             <Row>
               <Col sm="12">
-              <h4 className="h4pagi">Charities</h4>
+              {/* <h4 className="h4pagi">Charities</h4> */}
               <Row>
               {this.state.pageOfItems.map(item =>
-				<FavCard key={item.id} item={item}/>	
-              )}
-			</Row>
-			<div>
+				        <FavCard key={item.id} item={item}/>	
+                )}
+			      </Row>
+			      <div>
             <Pagination items={this.state.exampleItems} onChangePage={this.onChangePage} />
             </div>
-
-
-
               </Col>
             </Row>
-          </TabPane>
-          <TabPane tabId="2">
-            Donations Go Here
-          </TabPane>
-        </TabContent>
+         
       </div>
     );
   }

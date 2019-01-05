@@ -1,56 +1,45 @@
 import React from 'react';
-import { Card, CardText, CardBody, CardLink,
-  CardTitle, CardSubtitle, Row, Col, Container } from 'reactstrap';
+import {
+  Card, CardText, CardBody, CardLink,
+  CardTitle, CardSubtitle, Row, Col, Container
+} from 'reactstrap';
 import PropTypes from 'prop-types';
 import './style.css';
 import $ from "jquery";
 
-// import chArr from '../Services/Charities';
-
-
-class FavCard extends React.Component{
+class FavCard extends React.Component {
   constructor(props) {
     super(props)
-
-    this.state ={
+    this.state = {
       toggle: false
     }
-
   }
-
-  handleRemove = (event) =>{
-    console.log("removeBTN",event.target.id)
-    // $.ajax({
-    //   url: '/charities',
-    //   dataType: 'json',
-    //   type: "delete",
-    //   success: function(data) {
-    //       console.log(data,"/charities/charities/charities/charities")
-    //       this.setState({
-    //         test: data
-    //       })
-    //    return data;
-    //   }.bind(this),
-    //   error: function(xhr, status, err) {
-    //     console.error(this.props.url, status, err.toString());
-    //   }.bind(this)
-    // });
-    
+  handleRemove = (event) => {
+    console.log("removeBTN", event.target.id)
     const target = event.target;
     const id = JSON.parse(target.id);
     $.ajax({
       type: "DELETE",
-      url: "/charities", /* THIS URL IS CALLING CORRECTLY ie. /items/8 */
-      dataType: "json",
+      url: "/delCharities", /* THIS URL IS CALLING CORRECTLY ie. /items/8 */
+      dataType: "text",
       data: {id:id},
       success: function(response) {
           console.log("successfully deleted");
-      },
-      error: function () {
-          console.log("error");
-      }
+          // return ;
+          console.log('response', response)
+        //   if (response === true) {
+        //     for(var i = 0; i < this.props.item.length; i++) {
+        //     if(this.props.item[i].id == id) {
+        //       console.log('index', i)
+        //       this.props.item.splice(i, 1);
+        //         break;
+        //     }
+        // }
+        //   } 
+          
+      }.bind(this)
   });
-  window.location.reload()
+  // window.location.reload()
   }
   render() {
       return (
@@ -66,15 +55,11 @@ class FavCard extends React.Component{
                 <CardText>{this.props.item.description}</CardText>
                 <CardText>{this.props.item.amount}</CardText>
                 <CardText>{this.props.item.location}</CardText>
-
-
-
-                <CardLink href="#">View</CardLink>
                 <button href="#" id={this.props.item.id} onClick={this.handleRemove}>Remove</button>
+                <button href="#" id={this.props.item.id} onClick={this.handleRemove}>Edit</button>
               </CardBody >
               </Card>
               </Col>
-            
       );
     }
 };
@@ -83,7 +68,7 @@ class FavCard extends React.Component{
 
 
 Container.propTypes = {
-  fluid:  PropTypes.bool
+  fluid: PropTypes.bool
   // applies .container-fluid class
 }
 
